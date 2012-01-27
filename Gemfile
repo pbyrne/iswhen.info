@@ -26,6 +26,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'simplecov'
+
+  # guard
+  gem 'guard'
+  gem 'guard-rspec'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
