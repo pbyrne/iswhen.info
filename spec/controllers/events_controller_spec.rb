@@ -19,14 +19,6 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe EventsController do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Event. As you add validations to Event, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-  
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EventsController. Be sure to keep this updated too.
@@ -36,7 +28,7 @@ describe EventsController do
 
   describe "GET index" do
     it "assigns all events as @events" do
-      event = Event.create! valid_attributes
+      event = Factory(:event)
       get :index, {}, valid_session
       assigns(:events).should eq([event])
     end
@@ -44,7 +36,7 @@ describe EventsController do
 
   describe "GET show" do
     it "assigns the requested event as @event" do
-      event = Event.create! valid_attributes
+      event = Factory(:event)
       get :show, {:id => event.to_param}, valid_session
       assigns(:event).should eq(event)
     end

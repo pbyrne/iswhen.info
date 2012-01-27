@@ -2,9 +2,12 @@
 
 FactoryGirl.define do
   factory :event do
-    name "MyString"
-    shortname "MyString"
-    longname "MyString"
-    starts_sundown false
+    sequence(:name) { |n| "Some Event #{n}" }
+    sequence(:shortname) { |n| "Event #{n}" }
+    sequence(:longname) { |n| "Some Spectacular Event" }
+
+    factory :sundown_event do
+      start_sundown true
+    end
   end
 end
