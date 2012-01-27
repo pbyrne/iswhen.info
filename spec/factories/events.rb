@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :event do
     sequence(:name) { |n| "Some Event #{n}" }
-    sequence(:shortname) { |n| "Event #{n}" }
+    sequence(:shortname) { |n| "event#{n}" }
     sequence(:longname) { |n| "Some Spectacular Event" }
 
     factory :sundown_event do
