@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe EventsController do
+  let!(:event) { Factory(:event) }
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EventsController. Be sure to keep this updated too.
@@ -28,7 +29,6 @@ describe EventsController do
 
   describe "GET index" do
     it "assigns all events as @events" do
-      event = Factory(:event)
       get :index, {}, valid_session
       assigns(:events).should eq([event])
     end
@@ -36,7 +36,6 @@ describe EventsController do
 
   describe "GET show" do
     it "assigns the requested event as @event" do
-      event = Factory(:event)
       get :show, {:id => event.to_param}, valid_session
       assigns(:event).should eq(event)
     end
