@@ -30,6 +30,8 @@ group :development, :test do
   # guard
   gem 'guard'
   gem 'guard-rspec'
+  gem 'rb-fsevent' # for better file-change detection
+  gem 'ruby_gntp' # for growl
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
