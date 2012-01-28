@@ -17,4 +17,17 @@ describe Event do
     # name
     it { should validate_presence_of(:name) }
   end
+
+  context ".all_but(event)" do
+    let!(:event1) { Factory(:event) }
+    let!(:event2) { Factory(:event) }
+    let!(:event3) { Factory(:event) }
+    let!(:event4) { Factory(:event) }
+
+    subject { Event.all_but(event1) }
+
+    it "returns all events except the given" do
+      subject.should == (Event.all - [event1])
+    end
+  end
 end

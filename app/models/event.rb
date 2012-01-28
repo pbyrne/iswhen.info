@@ -6,4 +6,8 @@ class Event < ActiveRecord::Base
   validates :shortname,
     :format => /^\w+$/,
     :uniqueness => true
+
+  def self.all_but(event)
+    where("id != ?", event)
+  end
 end
