@@ -26,6 +26,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'capybara'
   gem 'simplecov'
 
   # guard
