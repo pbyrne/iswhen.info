@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = Event.with_subdomain(request.subdomain).first
     @events = Event.all_but(@event)
 
     respond_to do |format|

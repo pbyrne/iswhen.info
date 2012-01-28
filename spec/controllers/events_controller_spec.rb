@@ -39,7 +39,8 @@ describe EventsController do
     let!(:event3) { Factory(:event) }
 
     it "assigns the requested event as @event" do
-      get :show, {:id => event.to_param}, valid_session
+      request.stub(subdomain: event.to_param)
+      get :show, {}, valid_session
       assigns(:event).should eq(event)
       assigns(:events).should eq(Event.all - [event])
     end
