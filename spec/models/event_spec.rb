@@ -31,6 +31,17 @@ describe Event do
     end
   end
 
+  context ".with_subdomain(subdomain)" do
+    let!(:event1) { Factory(:event) }
+    let!(:event2) { Factory(:event) }
+
+    subject { Event.with_subdomain(event1.shortname) }
+
+    it "returns the events with the given short name" do
+      subject.first.should == event1
+    end
+  end
+
   context "#to_param" do
     let(:event) { Factory(:event) }
 

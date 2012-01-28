@@ -11,6 +11,10 @@ class Event < ActiveRecord::Base
     where("id != ?", event)
   end
 
+  def self.with_subdomain(subdomain)
+    where(shortname: subdomain)
+  end
+
   def to_param
     shortname
   end
