@@ -35,9 +35,13 @@ describe EventsController do
   end
 
   describe "GET show" do
+    let!(:event2) { Factory(:event) }
+    let!(:event3) { Factory(:event) }
+
     it "assigns the requested event as @event" do
       get :show, {:id => event.to_param}, valid_session
       assigns(:event).should eq(event)
+      assigns(:events).should eq(Event.all - [event])
     end
   end
 end
