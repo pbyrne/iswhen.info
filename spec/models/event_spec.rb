@@ -30,4 +30,12 @@ describe Event do
       subject.should == (Event.all - [event1])
     end
   end
+
+  context "#to_param" do
+    let(:event) { Factory(:event) }
+
+    it "returns the shortname" do
+      event.to_param.should == event.shortname
+    end
+  end
 end

@@ -10,4 +10,8 @@ class Event < ActiveRecord::Base
   def self.all_but(event)
     where("id != ?", event)
   end
+
+  def to_param
+    shortname
+  end
 end
