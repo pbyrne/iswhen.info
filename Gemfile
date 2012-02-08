@@ -23,7 +23,8 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem 'shoulda'
+  # TODO replace with bare shoulda once this pull request is closed https://github.com/thoughtbot/shoulda/pull/198
+  gem 'shoulda', :git=>'git://github.com/3den/shoulda.git'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'

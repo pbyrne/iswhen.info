@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/3den/shoulda.git
+  revision: b3dc4deec14924a3c6f6d54c505f245250571257
+  specs:
+    shoulda (3.0.0.beta2)
+      shoulda-context (~> 1.0.0)
+      shoulda-matchers (~> 1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -128,7 +136,8 @@ GEM
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
-    shoulda (2.11.3)
+    shoulda-context (1.0.0)
+    shoulda-matchers (1.0.0)
     simplecov (0.5.4)
       multi_json (~> 1.0.3)
       simplecov-html (~> 0.5.3)
@@ -165,6 +174,6 @@ DEPENDENCIES
   rspec-rails
   ruby_gntp
   sass-rails (~> 3.2.3)
-  shoulda
+  shoulda!
   simplecov
   uglifier (>= 1.0.3)
