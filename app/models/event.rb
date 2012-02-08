@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  has_many :observances, :inverse_of => :event
+
   validates :longname,
     :presence => true
   validates :name,
