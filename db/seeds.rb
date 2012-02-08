@@ -1,4 +1,8 @@
 # encoding: UTF-8
+require 'event_loader'
+
+Event.destroy_all
+Observance.destroy_all
 
 EventLoader.create("April Fools’ Day", "aprilfools", "April Fools’ Day", nil, [
   ["2011-04-01 05:00:00 UTC", ""],
