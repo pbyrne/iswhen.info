@@ -29,6 +29,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'simplecov'
+  gem 'awesome_print'
 
   # guard
   gem 'guard'
