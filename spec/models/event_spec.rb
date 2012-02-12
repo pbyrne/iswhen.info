@@ -51,4 +51,19 @@ describe Event do
       event.to_param.should == event.shortname
     end
   end
+
+  context "#observances" do
+    let!(:event) { Factory(:event)}
+    let!(:obs1) { Factory(:observance, :event => event, :start_at => 1.day.ago) }
+    let!(:obs2) { Factory(:observance, :event => event, :start_at => 1.month.from_now) } # newest
+    let!(:obs3) { Factory(:observance, :event => event, :start_at => 1.month.ago) } # oldest
+
+    subject { event.observances }
+
+    it "returns in start_at order, ascending" do
+      subject.first.should == obs3
+      subject.second.should == obs1
+      subject.last.should == obs2
+    end
+  end
 end

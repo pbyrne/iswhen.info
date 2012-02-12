@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  has_many :observances, :inverse_of => :event
+  has_many :observances, :inverse_of => :event, :order => "start_at asc"
 
   validates :longname,
     :presence => true
