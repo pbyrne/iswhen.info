@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.order_by_upcoming
-    joins(:observances).order("observances.start_at asc")
+    joins(:observances).where("observances.start_at >= ?", Date.today).order("observances.start_at asc")
   end
 
   def to_param

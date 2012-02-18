@@ -49,6 +49,7 @@ describe Event do
     let!(:event2) { Factory(:event) }
     let!(:first_observance) { Factory(:observance, :start_at => 1.month.from_now, :event => event2) }
     let!(:second_observance) { Factory(:observance, :start_at => 3.months.from_now, :event => event1) }
+    let!(:past_observance) { Factory(:observance, :start_at => 1.year.ago, :event => event1) }
 
     subject { Event.order_by_upcoming }
 
