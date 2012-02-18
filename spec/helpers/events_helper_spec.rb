@@ -11,4 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe EventsHelper do
+  context ".link_to_event(event)" do
+    let(:event) { Factory(:event) }
+
+    it "generates a link to the event's page" do
+      link_to_event(event).should == link_to(event.name, root_path(:subdomain => event.shortname))
+    end
+  end
 end
