@@ -1,22 +1,20 @@
 require 'spec_helper'
 
 describe "events/index" do
-  # before(:each) do
-  #   assign(:events, [
-  #     stub_model(Event,
-  #       :name => "Name",
-  #       :shortname => "Shortname",
-  #       :longname => "Longname",
-  #       :starts_sundown => false
-  #     ),
-  #     stub_model(Event,
-  #       :name => "Name",
-  #       :shortname => "Shortname",
-  #       :longname => "Longname",
-  #       :starts_sundown => false
-  #     )
-  #   ])
-  # end
+  let(:event1) { Factory(:event_with_observances) }
+  let(:event2) { Factory(:event_with_observances) }
+
+  before(:each) do
+    assign(:events, [event1, event2])
+  end
+
+  it "renders a list of events" do
+    render
+
+    assert_select ".events"
+    assert_select ".events .event", :count => 2
+    assert_select ".event a", :count => 2
+  end
 
   # it "renders a list of events" do
   #   render

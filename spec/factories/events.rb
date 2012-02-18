@@ -9,5 +9,12 @@ FactoryGirl.define do
     factory :sundown_event do
       start_sundown true
     end
+
+    factory :event_with_observances do
+      after_create do |e|
+        Factory(:observance, :event => e)
+        Factory(:observance, :event => e)
+      end
+    end
   end
 end
