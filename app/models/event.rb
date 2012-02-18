@@ -17,6 +17,10 @@ class Event < ActiveRecord::Base
     where(shortname: subdomain)
   end
 
+  def self.order_by_upcoming
+    joins(:observances).order("observances.start_at asc")
+  end
+
   def to_param
     shortname
   end

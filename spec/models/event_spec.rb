@@ -44,6 +44,20 @@ describe Event do
     end
   end
 
+  context ".order_by_upcoming" do
+    let!(:event1) { Factory(:event) }
+    let!(:event2) { Factory(:event) }
+    let!(:first_observance) { Factory(:observance, :start_at => 1.month.from_now, :event => event2) }
+    let!(:second_observance) { Factory(:observance, :start_at => 3.months.from_now, :event => event1) }
+
+    subject { Event.order_by_upcoming }
+
+    it "should order by the start_at for the observances" do
+      subject.first.should == event2
+      subject.last.should == event1
+    end
+  end
+
   context "#to_param" do
     let(:event) { Factory(:event) }
 
