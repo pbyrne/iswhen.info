@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
     :uniqueness => true
 
   def self.all_but(event)
-    where("id != ?", event)
+    order_by_upcoming.where("events.id != ?", event)
   end
 
   def self.with_subdomain(subdomain)
@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.order_by_upcoming
-    joins(:observances).where("observances.start_at >= ?", Date.today).order("observances.start_at asc")
+    joins(:observances).where("observances.start_at >= ?", Date.today).order("observances.start_at asc").uniq
   end
 
   def to_param

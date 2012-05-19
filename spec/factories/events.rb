@@ -12,8 +12,8 @@ FactoryGirl.define do
 
     factory :event_with_observances do
       after_create do |e|
-        Factory(:observance, :event => e)
-        Factory(:observance, :event => e)
+        Factory(:observance, :event => e, :start_at => 1.week.from_now)
+        Factory(:observance, :event => e, :start_at => 1.month.from_now)
       end
     end
   end

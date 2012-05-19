@@ -37,8 +37,8 @@ describe EventsController do
   end
 
   describe "GET show" do
-    let!(:event2) { Factory(:event) }
-    let!(:event3) { Factory(:event) }
+    let!(:event2) { Factory(:event_with_observances) }
+    let!(:event3) { Factory(:event_with_observances) }
 
     it "assigns the requested event as @event" do
       request.stub(subdomain: event.to_param)

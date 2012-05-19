@@ -21,15 +21,14 @@ describe Event do
   end
 
   context ".all_but(event)" do
-    let!(:event1) { Factory(:event) }
-    let!(:event2) { Factory(:event) }
-    let!(:event3) { Factory(:event) }
-    let!(:event4) { Factory(:event) }
-
-    subject { Event.all_but(event1) }
+    let!(:event1) { Factory(:event_with_observances) }
+    let!(:event2) { Factory(:event_with_observances) }
+    let!(:event3) { Factory(:event_with_observances) }
+    let!(:event4) { Factory(:event_with_observances) }
 
     it "returns all events except the given" do
-      subject.should == (Event.all - [event1])
+      p 100, Event.all_but(event1)
+      Event.all_but(event1).should == (Event.order_by_upcoming - [event1])
     end
   end
 
