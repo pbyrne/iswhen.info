@@ -6,7 +6,7 @@ describe Event do
   context "#valid?" do
     # shortname
     it do
-      Factory(:event) # making an event for the purposes of the uniqueness test
+      create(:event) # making an event for the purposes of the uniqueness test
       should validate_uniqueness_of(:shortname)
     end
     it { should allow_value("event").for(:shortname) }
@@ -21,10 +21,10 @@ describe Event do
   end
 
   context ".all_but(event)" do
-    let!(:event1) { Factory(:event_with_observances) }
-    let!(:event2) { Factory(:event_with_observances) }
-    let!(:event3) { Factory(:event_with_observances) }
-    let!(:event4) { Factory(:event_with_observances) }
+    let!(:event1) { create(:event_with_observances) }
+    let!(:event2) { create(:event_with_observances) }
+    let!(:event3) { create(:event_with_observances) }
+    let!(:event4) { create(:event_with_observances) }
 
     it "returns all events except the given" do
       p 100, Event.all_but(event1)
@@ -33,8 +33,8 @@ describe Event do
   end
 
   context ".with_subdomain(subdomain)" do
-    let!(:event1) { Factory(:event) }
-    let!(:event2) { Factory(:event) }
+    let!(:event1) { create(:event) }
+    let!(:event2) { create(:event) }
 
     subject { Event.with_subdomain(event1.shortname) }
 
@@ -44,12 +44,12 @@ describe Event do
   end
 
   context ".order_by_upcoming" do
-    let!(:event1) { Factory(:event) }
-    let!(:event2) { Factory(:event) }
-    let!(:event3) { Factory(:event) }
-    let!(:first_observance) { Factory(:observance, :start_at => 1.month.from_now, :event => event2) }
-    let!(:second_observance) { Factory(:observance, :start_at => 3.months.from_now, :event => event1) }
-    let!(:past_observance) { Factory(:observance, :start_at => 1.year.ago, :event => event1) }
+    let!(:event1) { create(:event) }
+    let!(:event2) { create(:event) }
+    let!(:event3) { create(:event) }
+    let!(:first_observance) { create(:observance, :start_at => 1.month.from_now, :event => event2) }
+    let!(:second_observance) { create(:observance, :start_at => 3.months.from_now, :event => event1) }
+    let!(:past_observance) { create(:observance, :start_at => 1.year.ago, :event => event1) }
 
     subject { Event.order_by_upcoming }
 
@@ -60,7 +60,7 @@ describe Event do
   end
 
   context "#to_param" do
-    let(:event) { Factory(:event) }
+    let(:event) { create(:event) }
 
     it "returns the shortname" do
       event.to_param.should == event.shortname
@@ -68,10 +68,10 @@ describe Event do
   end
 
   context "#observances" do
-    let!(:event) { Factory(:event)}
-    let!(:obs1) { Factory(:observance, :event => event, :start_at => 1.day.ago) }
-    let!(:obs2) { Factory(:observance, :event => event, :start_at => 1.month.from_now) } # newest
-    let!(:obs3) { Factory(:observance, :event => event, :start_at => 1.month.ago) } # oldest
+    let!(:event) { create(:event)}
+    let!(:obs1) { create(:observance, :event => event, :start_at => 1.day.ago) }
+    let!(:obs2) { create(:observance, :event => event, :start_at => 1.month.from_now) } # newest
+    let!(:obs3) { create(:observance, :event => event, :start_at => 1.month.ago) } # oldest
 
     subject { event.observances }
 
@@ -83,10 +83,10 @@ describe Event do
   end
 
   context "#upcoming_observances" do
-    let!(:event) { Factory(:event) }
-    let!(:yesterday) { Factory(:observance, :event => event, :start_at => Date.yesterday) }
-    let!(:today) { Factory(:observance, :event => event, :start_at => Date.today) }
-    let!(:tomorrow) { Factory(:observance, :event => event, :start_at => Date.tomorrow) }
+    let!(:event) { create(:event) }
+    let!(:yesterday) { create(:observance, :event => event, :start_at => Date.yesterday) }
+    let!(:today) { create(:observance, :event => event, :start_at => Date.today) }
+    let!(:tomorrow) { create(:observance, :event => event, :start_at => Date.tomorrow) }
 
     subject { event.upcoming_observances }
 

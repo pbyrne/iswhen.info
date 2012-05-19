@@ -19,7 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe EventsController do
-  let(:event) { Factory(:event) }
+  let(:event) { create(:event) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -37,8 +37,8 @@ describe EventsController do
   end
 
   describe "GET show" do
-    let!(:event2) { Factory(:event_with_observances) }
-    let!(:event3) { Factory(:event_with_observances) }
+    let!(:event2) { create(:event_with_observances) }
+    let!(:event3) { create(:event_with_observances) }
 
     it "assigns the requested event as @event" do
       request.stub(subdomain: event.to_param)
