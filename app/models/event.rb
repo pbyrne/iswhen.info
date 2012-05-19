@@ -1,5 +1,9 @@
 class Event < ActiveRecord::Base
   has_many :observances, :inverse_of => :event, :order => "start_at asc"
+  has_many :upcoming_observances,
+    :class_name => "Observance",
+    :conditions => ["start_at >= ?", Date.today],
+    :order => "start_at asc"
 
   validates :longname,
     :presence => true

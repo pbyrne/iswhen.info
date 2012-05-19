@@ -47,6 +47,7 @@ describe Event do
   context ".order_by_upcoming" do
     let!(:event1) { Factory(:event) }
     let!(:event2) { Factory(:event) }
+    let!(:event3) { Factory(:event) }
     let!(:first_observance) { Factory(:observance, :start_at => 1.month.from_now, :event => event2) }
     let!(:second_observance) { Factory(:observance, :start_at => 3.months.from_now, :event => event1) }
     let!(:past_observance) { Factory(:observance, :start_at => 1.year.ago, :event => event1) }
@@ -79,6 +80,24 @@ describe Event do
       subject.first.should == obs3
       subject.second.should == obs1
       subject.last.should == obs2
+    end
+  end
+
+  context "#upcoming_observances" do
+    let!(:event) { Factory(:event) }
+    let!(:yesterday) { Factory(:observance, :event => event, :start_at => Date.yesterday) }
+    let!(:today) { Factory(:observance, :event => event, :start_at => Date.today) }
+    let!(:tomorrow) { Factory(:observance, :event => event, :start_at => Date.tomorrow) }
+
+    subject { event.upcoming_observances }
+
+    it "does not include events in the past" do
+      subject.should_not include yesterday
+    end
+
+    it "includes events in the future" do
+      subject.should include today
+      subject.should include tomorrow
     end
   end
 end
