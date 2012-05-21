@@ -20,18 +20,6 @@ describe Event do
     it { should validate_presence_of(:name) }
   end
 
-  context ".all_but(event)" do
-    let!(:event1) { create(:event_with_observances) }
-    let!(:event2) { create(:event_with_observances) }
-    let!(:event3) { create(:event_with_observances) }
-    let!(:event4) { create(:event_with_observances) }
-
-    it "returns all events except the given" do
-      p 100, Event.all_but(event1)
-      Event.all_but(event1).should == (Event.order_by_upcoming - [event1])
-    end
-  end
-
   context ".with_subdomain(subdomain)" do
     let!(:event1) { create(:event) }
     let!(:event2) { create(:event) }
@@ -40,22 +28,6 @@ describe Event do
 
     it "returns the events with the given short name" do
       subject.first.should == event1
-    end
-  end
-
-  context ".order_by_upcoming" do
-    let!(:event1) { create(:event) }
-    let!(:event2) { create(:event) }
-    let!(:event3) { create(:event) }
-    let!(:first_observance) { create(:observance, :start_at => 1.month.from_now, :event => event2) }
-    let!(:second_observance) { create(:observance, :start_at => 3.months.from_now, :event => event1) }
-    let!(:past_observance) { create(:observance, :start_at => 1.year.ago, :event => event1) }
-
-    subject { Event.order_by_upcoming }
-
-    it "should order by the start_at for the observances" do
-      subject.first.should == event2
-      subject.last.should == event1
     end
   end
 
@@ -97,6 +69,28 @@ describe Event do
     it "includes events in the future" do
       subject.should include today
       subject.should include tomorrow
+    end
+  end
+
+  context ".with_observances" do
+    let!(:event_without) { create(:event) }
+    let!(:event_with1) { create(:event_with_observances) }
+    let!(:event_with2) { create(:event_with_observances) }
+
+    subject { Event.with_observances }
+
+    it "does not return events without observances" do
+      subject.should_not include event_without
+    end
+
+    it "returns events with observances" do
+      subject.should include event_with1
+      subject.should include event_with2
+    end
+
+    it "should not return duplicates" do
+      # for some reason, fails expectation unless i call to_a (says it has 4 items)
+      subject.to_a.should have(2).items
     end
   end
 end

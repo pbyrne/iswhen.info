@@ -3,9 +3,10 @@ require 'spec_helper'
 describe "events/index" do
   let(:event1) { create(:event_with_observances) }
   let(:event2) { create(:event_with_observances) }
+  let(:catalog) { Catalog.new([event1, event2]) }
 
   before(:each) do
-    assign(:events, [event1, event2])
+    assign(:catalog, catalog)
   end
 
   it "renders a list of events" do

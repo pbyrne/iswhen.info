@@ -13,16 +13,12 @@ class Event < ActiveRecord::Base
     :format => /^\w+$/,
     :uniqueness => true
 
-  def self.all_but(event)
-    order_by_upcoming.where("events.id != ?", event)
-  end
-
   def self.with_subdomain(subdomain)
     where(shortname: subdomain)
   end
 
-  def self.order_by_upcoming
-    joins(:observances).where("observances.start_at >= ?", Date.today).order("observances.start_at asc").uniq
+  def self.with_observances
+    joins(:observances).uniq
   end
 
   def to_param
