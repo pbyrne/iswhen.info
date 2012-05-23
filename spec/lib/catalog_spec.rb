@@ -19,6 +19,15 @@ describe Catalog do
   end
 
   context "#each" do
-    it "sorts by the sort date"
+    let(:event1) { stub }
+    let(:event2) { stub }
+    let(:catalog) { Catalog.new([event1, event2])}
+
+    it "iterates over the things" do
+      event1.should_receive(:foo)
+      event2.should_receive(:foo)
+
+      catalog.each { |thing| thing.foo }
+    end
   end
 end
