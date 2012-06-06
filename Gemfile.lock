@@ -172,7 +172,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   capybara
-  coffee-rails (~> 3.2.1)
+  coffee-rails
   factory_girl_rails
   guard
   guard-rspec
@@ -182,7 +182,7 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails
   ruby_gntp
-  sass-rails (~> 3.2.3)
+  sass-rails
   shoulda
   simplecov
-  uglifier (>= 1.0.3)
+  uglifier
