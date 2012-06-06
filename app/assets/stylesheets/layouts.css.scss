@@ -1,3 +1,13 @@
-// Place all the styles related to the Events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Place Layout (in the SMACSS sense) styles here
+
+@import "variables";
+
+html {
+  background: $far_background;
+  color: $copy;
+}
+
+body {
+  background: $background;
+  color: $copy;
+}
