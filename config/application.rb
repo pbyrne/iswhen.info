@@ -57,5 +57,7 @@ module IsWhen
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.app_store_link = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=313199425&mt=8&s=143441"
   end
 end
