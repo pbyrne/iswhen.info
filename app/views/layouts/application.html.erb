@@ -2,12 +2,18 @@
 <html>
 <head>
   <title>IsWhen.info</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
+
+<section class="call-iphone">
+  <%= link_to "Find out about IsWhen for iOS", "#" %>
+  or
+  <%= link_to "download it from the App Store", "http://itunes.apple.com/us/app/iswhen/id313199425?mt=8" %>.
+</section>
 
 <footer>
   Copyright &copy; 2008&mdash;<%= Date.today.year %>
