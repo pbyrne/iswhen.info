@@ -23,7 +23,6 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem 'shoulda'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
@@ -36,6 +35,11 @@ group :development, :test do
   gem 'rb-fsevent' # for better file-change detection
   gem 'ruby_gntp' # for growl
 end
+
+group :test do
+  gem 'shoulda'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
