@@ -28,6 +28,7 @@ group :development, :test do
   gem 'capybara'
   gem 'simplecov'
   gem 'awesome_print'
+  gem 'powder'
 
   # guard
   gem 'guard'
