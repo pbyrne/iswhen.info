@@ -33,7 +33,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'rb-fsevent' # for better file-change detection
-  gem 'ruby_gntp' # for growl
 end
 
 group :test do
