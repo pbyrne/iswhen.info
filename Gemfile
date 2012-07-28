@@ -25,7 +25,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'capybara'
+  # gem 'capybara'
   gem 'simplecov'
   gem 'awesome_print'
   gem 'powder'
