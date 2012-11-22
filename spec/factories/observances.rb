@@ -2,8 +2,6 @@
 
 FactoryGirl.define do
   factory :observance do
-    event ""
     start_on "2012-11-22"
-    end_on "2012-11-22"
   end
 end
