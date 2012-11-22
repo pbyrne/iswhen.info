@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :event do
-    name "MyString"
-    shortname "MyString"
-    longname "MyString"
+    name "Christmas"
+    shortname "christmas"
+    longname "Christmas Day"
     starts_sundown false
   end
 end
