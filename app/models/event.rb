@@ -1,3 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :longname, :name, :shortname, :starts_sundown
+  validates :shortname,
+    :format => /^\w+$/,
+    :uniqueness => true
 end
