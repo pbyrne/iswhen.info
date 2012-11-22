@@ -7,11 +7,11 @@ describe Observance do
     it "must have a start_on" do
       observance.start_on = Date.today
       observance.valid?
-      observance.errors[:start_on].should be_blank
+      observance.errors.should_not include :start_on
 
       observance.start_on = nil
       observance.valid?
-      observance.errors[:start_on].should_not be_blank
+      observance.errors.should include :start_on
     end
   end
 end
