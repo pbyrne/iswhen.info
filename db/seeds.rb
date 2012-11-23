@@ -209,7 +209,7 @@ EventLoader.new("MLK Jr. Day", "mlkday", "Martin Luthor King, Jr Day").tap do |l
   loader.add "2020-01-20"
 end
 
-EventLoader.create("Earth Day", "earthday", "Earth Day").tap do |loader|
+EventLoader.new("Earth Day", "earthday", "Earth Day").tap do |loader|
   loader.add "2012-04-22"
   loader.add "2013-04-22"
   loader.add "2014-04-22"
@@ -233,7 +233,7 @@ EventLoader.new("Flag Day", "flagday", "US Flag Day").tap do |loader|
   loader.add "2020-06-14"
 end
 
-EventLoader.create("Leap Year", "leapyear", "Leap Year Day").tap do |loader|
+EventLoader.new("Leap Year", "leapyear", "Leap Year Day").tap do |loader|
   loader.add "2016-02-29"
   loader.add "2020-02-29"
   loader.add "2024-02-29"
