@@ -13,5 +13,19 @@ describe Observance do
       observance.valid?
       observance.errors.should include :start_on
     end
+
+    it "must end after it starts" do
+      observance.end_on = nil
+      observance.valid?
+      observance.errors.should_not include :end_on
+
+      observance.end_on = observance.start_on
+      observance.valid?
+      observance.errors.should include :end_on
+
+      observance.end_on = observance.start_on + 1
+      observance.valid?
+      observance.errors.should_not include :end_on
+    end
   end
 end
