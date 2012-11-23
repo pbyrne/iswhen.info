@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Event do
   context "#valid?" do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event) { FactoryGirl.build(:event) }
 
     context "on shortname" do
       let(:duplicate) { FactoryGirl.build(:event, shortname: event.shortname) }
