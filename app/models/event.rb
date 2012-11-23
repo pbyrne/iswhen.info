@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  attr_accessible :name, :shortname, :longname, :starts_sundown
+
   has_many :observances, :inverse_of => :event, :order => "start_on asc"
 
   validates :longname,

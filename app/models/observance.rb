@@ -1,4 +1,6 @@
 class Observance < ActiveRecord::Base
+  attr_accessible :event_id, :start_on, :end_on
+
   belongs_to :event, :inverse_of => :observances
 
   validates :start_on,
