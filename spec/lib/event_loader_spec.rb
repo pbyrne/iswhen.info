@@ -12,7 +12,7 @@ describe EventLoader do
 
   context ".new(name, shortname, longname, starts_sundown)" do
     it "remembers the event's information" do
-      loader = EventLoader.new(name, shortname, longname, starts_sundown)
+      loader = EventLoader.new name, shortname, longname, starts_sundown
       loader.name.should == name
       loader.shortname.should == shortname
       loader.longname.should == longname
@@ -24,7 +24,12 @@ describe EventLoader do
       loader.name.should be_nil
       loader.shortname.should be_nil
       loader.longname.should be_nil
-      loader.starts_sundown.should be_nil
+      loader.starts_sundown.should be_false
+    end
+
+    it "defaults starts_sundown as being false" do
+      loader = EventLoader.new name, shortname, longname
+      loader.starts_sundown.should be_false
     end
   end
 

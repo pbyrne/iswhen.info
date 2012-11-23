@@ -11,7 +11,7 @@ class EventLoader
   # shortname - Unique short name (subdomain) of the event
   # longname - Longer description of the event
   # starts_sundown - Boolean, whether the event starts at sundown of the given day
-  def initialize(name=nil, shortname=nil, longname=nil, starts_sundown=nil)
+  def initialize(name=nil, shortname=nil, longname=nil, starts_sundown=false)
     self.name = name
     self.shortname = shortname
     self.longname = longname
