@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202181704) do
+ActiveRecord::Schema.define(:version => 20121124125213) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20120202181704) do
 
   create_table "observances", :force => true do |t|
     t.integer  "event_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.date     "start_on"
+    t.date     "end_on"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

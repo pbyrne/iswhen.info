@@ -2,56 +2,73 @@ require "spec_helper"
 require "event_loader"
 
 describe EventLoader do
-  context ".time_for(timestamp)" do
-    it "returns the to-local version of the time, if given one" do
-      sample = "2012-01-01 12:35:00"
-      EventLoader.time_for(sample).should == sample.to_time(:local)
+  let(:name) { "name" }
+  let(:shortname) { "shortname" }
+  let(:longname) { "longname" }
+  let(:starts_sundown) { false }
+  let(:event) { stub(:event, id: 123) }
+
+  subject { EventLoader.new(name, shortname, longname, starts_sundown) }
+
+  context ".new(name, shortname, longname, starts_sundown)" do
+    it "remembers the event's information" do
+      loader = EventLoader.new name, shortname, longname, starts_sundown
+      loader.name.should == name
+      loader.shortname.should == shortname
+      loader.longname.should == longname
+      loader.starts_sundown.should == starts_sundown
     end
 
-    it "returns nil if not given a timestamp" do
-      EventLoader.time_for(nil).should be_nil
+    it "accepts none of these attributes being given" do
+      loader = EventLoader.new
+      loader.name.should be_nil
+      loader.shortname.should be_nil
+      loader.longname.should be_nil
+      loader.starts_sundown.should be_false
     end
 
-    it "returns nil if given a blank string" do
-      EventLoader.time_for("").should be_nil
+    it "defaults starts_sundown as being false" do
+      loader = EventLoader.new name, shortname, longname
+      loader.starts_sundown.should be_false
     end
   end
 
-  context ".seed_event" do
-    let(:shortname) { "short" }
-    let(:name) { "name" }
-    let(:longname) { "longname" }
-    let(:starts_sundown) { true }
-    let(:observance_details) { [only_start, start_and_end]}
-    let(:only_start) { ["2011-04-01 05:00:00 UTC", ""] }
-    let(:start_and_end) { ["2009-12-11 06:00:00 UTC", "2009-12-19 06:00:00 UTC"] }
-
-    subject { EventLoader.create(name, shortname, longname, starts_sundown, observance_details) }
-
-    it "creates the correct number of objects" do
-      subject # to trigger creation
-
-      Event.count.should == 1
-      Observance.count.should == observance_details.count
+  context "#event" do
+    it "creates the event if none exists" do
+      Event.should_receive(:create!).with(name: name, shortname: shortname, longname: longname, starts_sundown: starts_sundown) { event }
+      subject.event.should == event
     end
 
-    it "creates the event with the correct attributes" do
-      subject.name.should == name
-      subject.shortname.should == shortname
-      subject.longname.should == longname
-      subject.starts_sundown.should == starts_sundown
+    it "loads the existing event if one matches its values" do
+      # already drop it into the database
+      existing = Event.create!(name: name, shortname: shortname, longname: longname, starts_sundown: starts_sundown)
+      subject.event.should == existing
     end
 
-    it "creates the event with the right number of observances" do
-      subject.observances.size.should == observance_details.size
+    it "remembers the given event" do
+      subject.event = event
+      Event.should_not_receive(:where)
+      Event.should_not_receive(:create!)
+      subject.event.should == event
+    end
+  end
+
+  context "#add(start_on, end_on)" do
+    let(:start_on) { Date.today }
+    let(:end_on) { start_on + 1 }
+
+    before do
+      subject.event = event
     end
 
-    it "creates the event with the correct observance details" do
-      subject.observances.first.start_at.should == only_start.first.to_time(:local)
-      subject.observances.first.end_at.should be_nil
+    it "creates a new observance with a start_on and end_on" do
+      Observance.should_receive(:create!).with(event_id: event.id, start_on: start_on, end_on: end_on)
+      subject.add start_on, end_on
+    end
 
-      subject.observances.second.start_at.should == start_and_end.first.to_time(:local)
-      subject.observances.second.end_at.should == start_and_end.second.to_time(:local)
+    it "creates a new observance with only a start_on" do
+      Observance.should_receive(:create!).with(event_id: event.id, start_on: start_on, end_on: nil)
+      subject.add start_on
     end
   end
 end
