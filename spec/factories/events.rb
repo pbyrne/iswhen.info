@@ -1,20 +1,10 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
   factory :event do
-    sequence(:name) { |n| "Some Event #{n}" }
-    sequence(:shortname) { |n| "event#{n}" }
-    sequence(:longname) { |n| "Some Spectacular Event" }
-
-    factory :sundown_event do
-      start_sundown true
-    end
-
-    factory :event_with_observances do
-      after :create do |e|
-        create(:observance, :event => e, :start_at => 1.week.from_now)
-        create(:observance, :event => e, :start_at => 1.month.from_now)
-      end
-    end
+    name "Christmas"
+    shortname "christmas"
+    longname "Christmas Day"
+    starts_sundown false
   end
 end

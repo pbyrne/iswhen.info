@@ -2,9 +2,30 @@ require 'spec_helper'
 
 describe Observance do
   context "#valid?" do
-    it { should validate_presence_of(:start_at) }
-    it { should validate_presence_of(:event_id) }
-  end
+    let(:observance) { FactoryGirl.build(:observance) }
 
-  it { should belong_to(:event) }
+    it "must have a start_on" do
+      observance.start_on = Date.today
+      observance.valid?
+      observance.errors.should_not include :start_on
+
+      observance.start_on = nil
+      observance.valid?
+      observance.errors.should include :start_on
+    end
+
+    it "must end after it starts" do
+      observance.end_on = nil
+      observance.valid?
+      observance.errors.should_not include :end_on
+
+      observance.end_on = observance.start_on
+      observance.valid?
+      observance.errors.should include :end_on
+
+      observance.end_on = observance.start_on + 1
+      observance.valid?
+      observance.errors.should_not include :end_on
+    end
+  end
 end
