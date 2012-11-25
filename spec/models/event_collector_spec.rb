@@ -38,4 +38,12 @@ describe EventCollector do
       subject.events.should == [event]
     end
   end
+
+  context "#sorted_events" do
+    pending
+  end
+
+  context "#each" do
+    pending
+  end
 end
