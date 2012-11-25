@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
   # Returns a Relation of Observances
   def upcoming_observanes
     # TODO refactor this to an Observance scope?
-    observances.where("start_on >= ?", Date.today)
+    observances.upcoming
   end
 
   # Public: The next upcoming observance

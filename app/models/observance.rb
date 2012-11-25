@@ -3,6 +3,8 @@ class Observance < ActiveRecord::Base
 
   belongs_to :event, :inverse_of => :observances
 
+  scope :upcoming, where("start_on >= ?", Date.today)
+
   validates :start_on,
     :presence => true
   validate :must_end_after_it_starts
