@@ -1,4 +1,7 @@
 IsWhen::Application.routes.draw do
+  # TODO remove this in favor of matching on subdomain
+  get "events/show"
+
   root to: "events#index"
 
   # The priority is based upon order of creation:
