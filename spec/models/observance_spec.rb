@@ -5,7 +5,7 @@ describe Observance do
     let(:observance) { FactoryGirl.build(:observance) }
 
     it "must have a start_on" do
-      observance.start_on = Date.today
+      observance.start_on = Date.current
       observance.valid?
       observance.errors.should_not include :start_on
 

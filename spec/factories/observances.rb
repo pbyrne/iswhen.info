@@ -6,7 +6,7 @@ FactoryGirl.define do
   end
 
   factory :today, class: Observance do
-    start_on Date.today
+    start_on Date.current
   end
 
   factory :tomorrow, class: Observance do

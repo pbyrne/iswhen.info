@@ -71,7 +71,7 @@ describe Event do
 
     it "sorts by next_date" do
       first.stub(next_date: Date.yesterday)
-      middle.stub(next_date: Date.today)
+      middle.stub(next_date: Date.current)
       last.stub(next_date: Date.tomorrow)
 
       [first, last, middle].sort.should == [first, middle, last]

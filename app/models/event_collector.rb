@@ -4,6 +4,6 @@ class EventCollector
   #
   # Returns an Array of Event instances
   def events
-    Event.joins(:observances).where("observances.start_on >= ?", Date.today).uniq
+    Event.joins(:observances).where("observances.start_on >= ?", Date.current).uniq
   end
 end
