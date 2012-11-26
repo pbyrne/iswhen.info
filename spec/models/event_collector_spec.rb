@@ -40,10 +40,27 @@ describe EventCollector do
   end
 
   context "#sorted_events" do
-    pending
+    let(:result) { stub(:array) }
+
+    it "sorts the events" do
+      subject.events.should_receive(:sort) { result }
+      subject.sorted_events.should == result
+    end
   end
 
   context "#each" do
-    pending
+    let(:event) { FactoryGirl.create(:event) }
+
+    before do
+      subject.should_receive(:sorted_events) { [event] }
+    end
+
+    it "iterates over the sorted events" do
+      event.should_receive(:inspect)
+
+      subject.each do |e|
+        e.inspect
+      end
+    end
   end
 end
