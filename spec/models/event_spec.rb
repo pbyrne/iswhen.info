@@ -143,4 +143,12 @@ describe Event do
       event.next_date.should == 100.years.from_now.to_date
     end
   end
+
+  context "#to_s" do
+    let(:event) { FactoryGirl.build(:event) }
+
+    it "uses the long name" do
+      event.to_s.should == event.longname
+    end
+  end
 end

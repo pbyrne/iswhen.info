@@ -41,4 +41,11 @@ class Event < ActiveRecord::Base
     # TODO figure out why this does a whole bunch of queries event with an Event.include(:observances)
     @next_observance ||= upcoming_observanes.first
   end
+
+  # Public: The string representation of the event
+  #
+  # Returns a String
+  def to_s
+    longname
+  end
 end
