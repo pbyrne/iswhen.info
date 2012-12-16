@@ -54,7 +54,7 @@ describe EventLoader do
   end
 
   context "#add(start_on, end_on)" do
-    let(:start_on) { Date.today }
+    let(:start_on) { Date.current }
     let(:end_on) { start_on + 1 }
 
     before do
