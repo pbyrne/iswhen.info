@@ -1,8 +1,6 @@
 <ul>
   <% @collection.each do |event| -%>
-    <li>
-      <%= event %>
-    </li>
+    <li><%= link_to_event event %></li>
   <% end -%>
 </ul>
 
