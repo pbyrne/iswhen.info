@@ -91,7 +91,7 @@ describe Event do
     end
   end
 
-  context "#upcoming_observanes" do
+  context "#upcoming_observances" do
     let(:event) { FactoryGirl.create(:event) }
     let(:past) { FactoryGirl.build(:yesterday) }
     let(:upcoming) { FactoryGirl.build(:today) }
@@ -104,14 +104,14 @@ describe Event do
     end
 
     it "sorts by start_on" do
-      event.upcoming_observanes.first.should == upcoming
-      event.upcoming_observanes.last.should == future
+      event.upcoming_observances.first.should == upcoming
+      event.upcoming_observances.last.should == future
     end
 
     it "does not include observances in the past" do
-      event.upcoming_observanes.should include upcoming
-      event.upcoming_observanes.should include future
-      event.upcoming_observanes.should_not include past
+      event.upcoming_observances.should include upcoming
+      event.upcoming_observances.should include future
+      event.upcoming_observances.should_not include past
     end
   end
 
@@ -121,7 +121,7 @@ describe Event do
     let(:future) { stub(:future_observance) }
 
     before do
-      event.stub(upcoming_observanes: [upcoming, future])
+      event.stub(upcoming_observances: [upcoming, future])
     end
 
     it "returns the next upcoming observance" do

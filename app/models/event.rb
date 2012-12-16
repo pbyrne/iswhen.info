@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessible :name, :shortname, :longname, :starts_sundown
 
   has_many :observances, :inverse_of => :event, :order => "start_on asc"
+  has_many :upcoming_observances, :class_name => "Observance", :inverse_of => :event, :order => "start_on asc", :conditions => Observance.upcoming.where_values
 
   validates :longname,
     :presence => true
@@ -26,19 +27,12 @@ class Event < ActiveRecord::Base
     next_observance.try(:start_on) || 100.years.from_now.to_date
   end
 
-  # Public: The observances in the future
-  #
-  # Returns a Relation of Observances
-  def upcoming_observanes
-    observances.upcoming
-  end
-
   # Public: The next upcoming observance
   #
   # Returns an Observance
   def next_observance
     # TODO figure out why this does a whole bunch of queries event with an Event.include(:observances)
-    @next_observance ||= upcoming_observanes.first
+    @next_observance ||= upcoming_observances.first
   end
 
   # Public: The string representation of the event
