@@ -1,7 +1,7 @@
 IsWhen::Application.routes.draw do
-  # TODO remove this in favor of matching on subdomain
-  get "events/show"
-
+  # foo.iswhen.info routes to show the foo event
+  match '', to: 'events#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  # otherwise, show the whole list
   root to: "events#index"
 
   # The priority is based upon order of creation:
