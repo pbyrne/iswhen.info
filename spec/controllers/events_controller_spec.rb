@@ -18,10 +18,25 @@ describe EventsController do
   end
 
   describe "GET 'show'" do
+    let(:event) { stub(:event) }
+    let(:subdomain) { "foo" }
+
+    before do
+      request.host = "#{subdomain}.example.host"
+    end
+
     it "returns http success" do
       get 'show'
       response.should be_success
     end
+
+    it "assigns the Event" do
+      Event.should_receive(:for_subdomain).with(subdomain) { event }
+      get 'show'
+      assigns(:event).should == event
+    end
+
+    it "assigns to EventCollector"
   end
 
 end

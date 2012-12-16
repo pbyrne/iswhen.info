@@ -4,5 +4,6 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.for_subdomain(request.subdomain)
   end
 end
