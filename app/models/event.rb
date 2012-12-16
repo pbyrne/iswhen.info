@@ -12,6 +12,15 @@ class Event < ActiveRecord::Base
     :format => /^\w+$/,
     :uniqueness => true
 
+  # Public: Find the event for the given subdomain
+  #
+  # subdomain - A String containing the subdomain to search for
+  #
+  # Returns an Event
+  def self.for_subdomain(subdomain)
+    find_by_shortname(subdomain) || raise(EventNotFound)
+  end
+
   # Public: Sort by next_date
   #
   # Assumes that Event#next_date will never be nil. The intention is to
@@ -41,4 +50,6 @@ class Event < ActiveRecord::Base
   def to_s
     longname
   end
+
+  EventNotFound = Class.new(StandardError)
 end
