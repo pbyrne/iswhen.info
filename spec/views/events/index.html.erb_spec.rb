@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "events/index.html.erb" do
+  before do
+    assign(:collection, [])
+  end
+
   it "includes some welcome copy" do
     render
 
