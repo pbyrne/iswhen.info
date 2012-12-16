@@ -11,4 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe EventsHelper do
+  context "link_to_event(event)" do
+    let(:event) { FactoryGirl.build(:event) }
+
+    it "builds a link to the correct subdomain" do
+      link_to_event(event).should == link_to(event.longname, root_url(subdomain: event.shortname))
+    end
+  end
 end
