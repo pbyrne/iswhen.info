@@ -32,16 +32,18 @@ describe EventsController do
       response.should be_success
     end
 
-    it "assigns the Event" do
+    it "assigns the event and collector" do
       Event.should_receive(:for_subdomain).with(subdomain) { event }
+      EventCollector.should_receive(:except).with(event) { collector }
+
       get 'show'
+
       assigns(:event).should == event
+      assigns(:collection).should == collector
     end
 
-    it "assigns to EventCollector" do
-      EventCollector.should_receive(:new) { collector }
-      get 'show'
-      assigns(:collection).should == collector
+    it "redirects to #index if given an invalid event" do
+      pending
     end
   end
 end
