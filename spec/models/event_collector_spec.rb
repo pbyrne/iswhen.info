@@ -65,6 +65,14 @@ describe EventCollector do
   end
 
   context ".except" do
-    pending
+    let!(:event) { FactoryGirl.create(:unique_upcoming_event) }
+    let!(:another) { FactoryGirl.create(:unique_upcoming_event) }
+
+    subject { EventCollector.except event }
+
+    it "loads events except the given event" do
+      subject.events.should include another
+      subject.events.should_not include event
+    end
   end
 end
