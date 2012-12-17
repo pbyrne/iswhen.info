@@ -151,4 +151,19 @@ describe Event do
       event.to_s.should == event.longname
     end
   end
+
+  context ".for_subdomain(subdomain)" do
+    let(:event) { FactoryGirl.build(:event) }
+    let(:subdomain) { "foo" }
+
+    it "returns the event with the given short name" do
+      Event.should_receive(:find_by_shortname).with(subdomain) { event }
+      Event.for_subdomain(subdomain).should == event
+    end
+
+    it "raises an exception if none match" do
+      Event.should_receive(:find_by_shortname).with(subdomain) { nil }
+      expect { Event.for_subdomain(subdomain) }.to raise_error(Event::EventNotFound)
+    end
+  end
 end

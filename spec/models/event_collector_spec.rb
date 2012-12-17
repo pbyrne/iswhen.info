@@ -63,4 +63,8 @@ describe EventCollector do
       end
     end
   end
+
+  context ".except" do
+    pending
+  end
 end
