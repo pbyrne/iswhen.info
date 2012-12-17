@@ -5,5 +5,6 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.for_subdomain(request.subdomain)
+    @collection = EventCollector.new
   end
 end
