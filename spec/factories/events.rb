@@ -20,7 +20,7 @@ FactoryGirl.define do
     end
     starts_sundown false
 
-    after_build do |event|
+    after(:build) do |event|
       event.observances << FactoryGirl.build(:tomorrow)
     end
   end
