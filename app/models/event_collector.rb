@@ -2,6 +2,17 @@
 class EventCollector
   attr_accessor :events
 
+  # Public: Instantiate an EventCollector without the given event
+  #
+  # event - An Event instance to exclude
+  #
+  # Returns an instance of EventCollector
+  def self.except(event)
+    new.tap do |collecter|
+      collecter.events -= [event]
+    end
+  end
+
   # Public: The list of upcoming events
   #
   # Returns an Array of Event instances
