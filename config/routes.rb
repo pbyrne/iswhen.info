@@ -1,6 +1,6 @@
 IsWhen::Application.routes.draw do
   # foo.iswhen.info routes to show the foo event
-  match '', to: 'events#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '', to: 'events#show', constraints: EventShowRouteMatcher.new
   # otherwise, show the whole list
   root to: "events#index"
 
