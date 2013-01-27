@@ -11,8 +11,13 @@ class Observance < ActiveRecord::Base
 
   # Private: Validate that the end is after the start
   def must_end_after_it_starts
-    if end_on? && end_on <= start_on
+    if ends_before_it_begins?
       errors.add(:end_on, "must be after the observance starts")
     end
+  end
+
+  # Private: Whether the Observance ends before it begins
+  def ends_before_it_begins?
+    end_on? && end_on <= start_on
   end
 end

@@ -40,4 +40,28 @@ describe Observance do
       Observance.upcoming.should include tomorrow
     end
   end
+
+  context "#ends_before_it_begins?" do
+    let(:observance) { FactoryGirl.build(:observance) }
+
+    it "is false if has no end_on" do
+      observance.end_on = nil
+      observance.ends_before_it_begins?.should be_false
+    end
+
+    it "is false if its end_on is after start_on" do
+      observance.end_on = observance.start_on + 1
+      observance.ends_before_it_begins?.should be_false
+    end
+
+    it "is true if its end_on is identical to start_on" do
+      observance.end_on = observance.start_on
+      observance.ends_before_it_begins?.should be_true
+    end
+
+    it "is true if its end_on is before start_on" do
+      observance.end_on = observance.start_on - 1
+      observance.ends_before_it_begins?.should be_true
+    end
+  end
 end
