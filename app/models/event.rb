@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   #
   # Returns an Event
   def self.for_subdomain(subdomain)
-    find_by_shortname(subdomain) || raise(EventNotFound)
+    find_by_shortname(subdomain) || raise(EventNotFound, "No event found for '#{subdomain}'.")
   end
 
   # Public: Sort by next_date
