@@ -41,9 +41,5 @@ describe EventsController do
       assigns(:event).should == event
       assigns(:collection).should == collector
     end
-
-    it "redirects to #index if given an invalid event" do
-      pending
-    end
   end
 end
