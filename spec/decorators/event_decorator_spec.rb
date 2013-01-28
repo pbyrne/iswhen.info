@@ -16,15 +16,20 @@ describe EventDecorator do
     end
   end
 
-  context "#has_upcoming_observances?" do
-    it "is true if the event has upcoming observances" do
-      event.stub(:upcoming_observances) { [observance] }
-      subject.should have_upcoming_observances
+  context "#has_future_observances?" do
+    it "is true if the event has 2 or more upcoming observances" do
+      event.stub(:upcoming_observances) { [stub, stub] }
+      subject.should have_future_observances
+    end
+
+    it "is false if the event has 1 upcoming observance" do
+      event.stub(:upcoming_observances) { [stub] }
+      subject.should_not have_future_observances
     end
 
     it "is false if the event has no upcoming observances" do
       event.stub(:upcoming_observances) { [] }
-      subject.should_not have_upcoming_observances
+      subject.should_not have_future_observances
     end
   end
 
