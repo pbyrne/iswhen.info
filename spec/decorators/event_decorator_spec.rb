@@ -17,8 +17,6 @@ describe EventDecorator do
   end
 
   context "#has_upcoming_observances?" do
-    let(:observance) { FactoryGirl.build(:observance) }
-
     it "is true if the event has upcoming observances" do
       event.stub(:upcoming_observances) { [observance] }
       subject.should have_upcoming_observances
