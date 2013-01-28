@@ -1,11 +1,15 @@
 class EventDecorator < Draper::Decorator
-  delegate :starts_sundown, :next_observance
+  delegate(
+    :next_observance,
+    :starts_sundown,
+    :upcoming_observances,
+  )
 
   # Public: Whether the event has upcoming observances beyond the next
   #
   # Returns a Boolean
   def has_future_observances?
-    source.upcoming_observances.count > 1
+    upcoming_observances.count > 1
   end
 
   # Public: The name of the day of week of its next observance
