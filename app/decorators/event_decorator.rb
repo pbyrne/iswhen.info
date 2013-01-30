@@ -24,16 +24,16 @@ class EventDecorator < Draper::Decorator
   #
   # Returns a String
   def year_string
-    return "" if next_observance.nil?
-
     current_year = Date.today.year
 
-    case next_observance.start_on.year
+    case year
     when current_year; "this year"
     when current_year.next; "next year"
     when current_year.pred; "last year"
-    else; next_observance.start_on.year.to_s
+    else; year.to_s
     end
+  rescue NoNextObservance
+    ""
   end
 
   # Public: The next obervance's year
