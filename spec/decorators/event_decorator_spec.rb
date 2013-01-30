@@ -77,4 +77,10 @@ describe EventDecorator do
       subject.day_of_week.should == ""
     end
   end
+
+  context "#name" do
+    it "display's the event's #longname attribute" do
+      subject.name.should == event.longname
+    end
+  end
 end

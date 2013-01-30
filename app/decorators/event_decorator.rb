@@ -35,4 +35,11 @@ class EventDecorator < Draper::Decorator
     else; next_observance.start_on.year.to_s
     end
   end
+
+  # Public: The name of the event
+  #
+  # Returns a String
+  def name
+    source.longname
+  end
 end
