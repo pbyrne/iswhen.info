@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "events/show.html.erb" do
   before do
     assign(:collection, [])
-    assign(:event, FactoryGirl.build(:event) )
+    assign(:event, FactoryGirl.build(:event).decorate )
   end
 
   it "renders the selected event" do
