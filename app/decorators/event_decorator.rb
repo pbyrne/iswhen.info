@@ -36,10 +36,21 @@ class EventDecorator < Draper::Decorator
     end
   end
 
+  # Public: The next obervance's year
+  #
+  # Returns a Fixnum
+  def year
+    raise(NoNextObservance) if next_observance.nil?
+
+    next_observance.start_on.year
+  end
+
   # Public: The name of the event
   #
   # Returns a String
   def name
     source.longname
   end
+
+  NoNextObservance = Class.new(StandardError)
 end

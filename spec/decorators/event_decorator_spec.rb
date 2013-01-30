@@ -66,6 +66,18 @@ describe EventDecorator do
     end
   end
 
+  context "#year" do
+    it "is the next observance's year" do
+      event.stub(:next_observance) { observance }
+      subject.year.should == observance.start_on.year
+    end
+
+    it "raises an exception if has no next observance" do
+      event.stub(:next_observance) { nil }
+      expect { subject.year }.to raise_error(EventDecorator::NoNextObservance)
+    end
+  end
+
   context "#day_of_week" do
     it "displays the full name of the day of the week of its next observance" do
       event.stub(:next_observance) { observance }
