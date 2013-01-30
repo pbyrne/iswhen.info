@@ -34,7 +34,36 @@ describe EventDecorator do
   end
 
   context "#year_string" do
-    pending
+    context "having a next observance" do
+      before do
+        event.stub(:next_observance) { observance }
+      end
+
+      it "is 'this year' for observances in the current year" do
+        observance.start_on.stub(:year) { Date.today.year }
+        subject.year_string.should == "this year"
+      end
+
+      it "is 'last year' for observances in the prior year" do
+        observance.start_on.stub(:year) { Date.today.year - 1 }
+        subject.year_string.should == "last year"
+      end
+
+      it "is 'next year' for observances next year" do
+        observance.start_on.stub(:year) { Date.today.year + 1 }
+        subject.year_string.should == "next year"
+      end
+
+      it "is the year for observances any other year" do
+        observance.start_on.stub(:year) { Date.today.year + 100 }
+        subject.year_string.should == observance.start_on.year.to_s
+      end
+    end
+
+    it "is empty string if no next observance" do
+      event.stub(:next_observance) { nil }
+      subject.year_string.should == ""
+    end
   end
 
   context "#day_of_week" do
