@@ -102,6 +102,18 @@ describe EventDecorator do
     end
   end
 
+  context "#day_of_month" do
+    it "displays the day of the month of its next observance" do
+      event.stub(:next_observance) { observance }
+      subject.day_of_month.should == event.next_observance.start_on.day.to_s
+    end
+
+    it "raises an exception if it has no next observance" do
+      event.stub(:next_observance) { nil }
+      expect { subject.day_of_month }.to raise_error(EventDecorator::NoNextObservance)
+    end
+  end
+
   context "#name" do
     it "display's the event's #longname attribute" do
       subject.name.should == event.longname

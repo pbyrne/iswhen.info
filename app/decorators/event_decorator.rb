@@ -22,6 +22,15 @@ class EventDecorator < Draper::Decorator
     next_observance.start_on.strftime(WEEKDAY_NAME)
   end
 
+  # Public: The day of the month of its next observance
+  #
+  # Returns a String
+  def day_of_month
+    raise(NoNextObservance) if next_observance.nil?
+
+    next_observance.start_on.day.to_s
+  end
+
   # Pubic: The name of the month of its next observance
   #
   # Returns a String
