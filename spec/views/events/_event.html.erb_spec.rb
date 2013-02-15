@@ -20,7 +20,11 @@ describe "events/_event.html.erb" do
   end
 
   it "displays the day of the month it occurs"
-  it "displays the month it occurs"
+  it "displays the month it occurs" do
+    render
+    rendered.should include event.month
+  end
+
   it "displays the year it occurs" do
     render
     rendered.should include event.year_string
