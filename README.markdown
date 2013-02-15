@@ -2,7 +2,7 @@ IsWhen.info
 -----------
 
 [![Build Status](https://secure.travis-ci.org/pbyrne/iswhen.info.png)](http://travis-ci.org/pbyrne/iswhen.info)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/pbyrne/iswhen.info)
+[![Code Climate](https://codeclimate.com/github/pbyrne/iswhen.info.png)](https://codeclimate.com/github/pbyrne/iswhen.info)
 
 [IsWhen.info][iswhen] (as in, "[Thanksgiving is **when**?][thanksgiving]") is a
 simple site I put together because I could never keep track of when different
