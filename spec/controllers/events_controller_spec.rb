@@ -18,13 +18,15 @@ describe EventsController do
   end
 
   describe "GET 'show'" do
-    let(:event) { stub(:event) }
+    let(:event) { FactoryGirl.build(:event) }
     let(:subdomain) { "foo" }
     let(:collector) { stub(:event_collector) }
 
     before do
       request.host = "#{subdomain}.example.host"
       Event.stub(:for_subdomain)
+      Event.stub(:for_subdomain).with(subdomain) { event }
+      EventCollector.stub(:except).with(event) { collector }
     end
 
     it "returns http success" do
@@ -33,12 +35,10 @@ describe EventsController do
     end
 
     it "assigns the event and collector" do
-      Event.should_receive(:for_subdomain).with(subdomain) { event }
-      EventCollector.should_receive(:except).with(event) { collector }
-
       get 'show'
 
       assigns(:event).should == event
+      assigns(:event).should be_decorated
       assigns(:collection).should == collector
     end
   end

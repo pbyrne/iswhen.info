@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.for_subdomain(request.subdomain)
+    @event = Event.for_subdomain(request.subdomain).decorate
     @collection = EventCollector.except(@event)
   end
 end
