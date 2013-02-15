@@ -1,4 +1,6 @@
 class EventDecorator < Draper::Decorator
+  WEEKDAY_NAME = "%A"
+  MONTH_NAME = "%B"
   delegate(
     :next_observance,
     :starts_sundown,
@@ -17,7 +19,16 @@ class EventDecorator < Draper::Decorator
   # Returns a String
   def day_of_week
     return "" if next_observance.nil?
-    next_observance.start_on.strftime("%A")
+    next_observance.start_on.strftime(WEEKDAY_NAME)
+  end
+
+  # Pubic: The name of the month of its next observance
+  #
+  # Returns a String
+  def month
+    raise(NoNextObservance) if next_observance.nil?
+
+    next_observance.start_on.strftime(MONTH_NAME)
   end
 
   # Public: The textual description of the next observance's year
