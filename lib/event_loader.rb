@@ -34,6 +34,8 @@ class EventLoader
   end
 
   # Private: The params used to find or create events
+  #
+  # Returns a Hash
   def params
     {
       name: name,
