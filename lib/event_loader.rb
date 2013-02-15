@@ -24,12 +24,25 @@ class EventLoader
   #
   # Returns an instance of Event
   def event
-    @event ||= Event.where(name: name, shortname: shortname, longname: longname, starts_sundown: starts_sundown).first
-    @event ||= Event.create!(name: name, shortname: shortname, longname: longname, starts_sundown: starts_sundown)
+    @event ||= Event.where(params).first
+    @event ||= Event.create!(params)
   end
 
   # Public: Add an observance to the event
   def add start_on, end_on=nil
     Observance.create!(event_id: event.id, start_on: start_on, end_on: end_on)
   end
+
+  # Private: The params used to find or create events
+  #
+  # Returns a Hash
+  def params
+    {
+      name: name,
+      shortname: shortname,
+      longname: longname,
+      starts_sundown: starts_sundown,
+    }
+  end
+  private :params
 end
