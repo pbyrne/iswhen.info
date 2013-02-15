@@ -1,1 +1,16 @@
-<h1>Looking at <%= @event.inspect %></h1>
+<div id="upcoming">
+  <h2>
+    <span class="preamble">The next</span>
+    <span class="event"><%= @event.name %></span>
+
+    <span class="etre">is</span>
+
+    <span class="day-name"><%= @event.day_of_week %></span><span class="comma">,</span>
+<%#     <span class="day-number"> 2</span> %>
+<%#     <span class="month">February</span><span class="comma">,</span> %>
+    <span class="year"><abbr title="<%= @event.year %>"><%= @event.year_string %></abbr></span>
+
+<%#     <span class="period">.</span> %>
+
+  </h2>
+</div>
