@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 describe "events/show.html.erb" do
+  let(:event) { FactoryGirl.build(:event).decorate }
+  let(:observance) { FactoryGirl.build :tomorrow }
+
   before do
     assign(:collection, [])
-    assign(:event, FactoryGirl.build(:event).decorate )
+    assign(:event, event)
+    event.stub(:next_observance) { observance }
   end
 
   it "renders the selected event" do
