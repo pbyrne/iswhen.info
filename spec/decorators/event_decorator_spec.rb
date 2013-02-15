@@ -78,15 +78,39 @@ describe EventDecorator do
     end
   end
 
+  context "#month" do
+    it "is the name of the next observance's month" do
+      event.stub(:next_observance) { observance }
+      subject.month.should == observance.start_on.strftime(EventDecorator::MONTH_NAME)
+    end
+
+    it "raises an exception if it has no next observance" do
+      event.stub(:next_observance) { nil }
+      expect { subject.month }.to raise_error(EventDecorator::NoNextObservance)
+    end
+  end
+
   context "#day_of_week" do
     it "displays the full name of the day of the week of its next observance" do
       event.stub(:next_observance) { observance }
-      subject.day_of_week.should == event.next_observance.start_on.strftime("%A")
+      subject.day_of_week.should == event.next_observance.start_on.strftime(EventDecorator::WEEKDAY_NAME)
     end
 
     it "properly handles an event with no next observance" do
       event.stub(:next_observance) { nil }
       subject.day_of_week.should == ""
+    end
+  end
+
+  context "#day_of_month" do
+    it "displays the day of the month of its next observance" do
+      event.stub(:next_observance) { observance }
+      subject.day_of_month.should == event.next_observance.start_on.day.to_s
+    end
+
+    it "raises an exception if it has no next observance" do
+      event.stub(:next_observance) { nil }
+      expect { subject.day_of_month }.to raise_error(EventDecorator::NoNextObservance)
     end
   end
 
