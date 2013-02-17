@@ -21,4 +21,16 @@ describe EventDecorator do
       subject.name.should == event.longname
     end
   end
+
+  context "#with_upcoming_observance" do
+    it "yields the next-most upcoming ovservance, wraped in a decorator, if any" do
+      subject.stub(:upcoming_observances) { [observance] }
+      expect { |b| subject.with_upcoming_observance(&b) }.to yield_with_args(ObservanceDecorator)
+    end
+
+    it "does not yield if no upcoming observance" do
+      subject.stub(:upcoming_observances) { [] }
+      expect { |b| subject.with_upcoming_observance(&b) }.not_to yield_control
+    end
+  end
 end
