@@ -16,107 +16,21 @@ describe EventDecorator do
     end
   end
 
-  context "#has_future_observances?" do
-    it "is true if the event has 2 or more upcoming observances" do
-      event.stub(:upcoming_observances) { [stub, stub] }
-      subject.should have_future_observances
-    end
-
-    it "is false if the event has 1 upcoming observance" do
-      event.stub(:upcoming_observances) { [stub] }
-      subject.should_not have_future_observances
-    end
-
-    it "is false if the event has no upcoming observances" do
-      event.stub(:upcoming_observances) { [] }
-      subject.should_not have_future_observances
-    end
-  end
-
-  context "#year_string" do
-    context "having a next observance" do
-      before do
-        event.stub(:next_observance) { observance }
-      end
-
-      it "is 'this year' for observances in the current year" do
-        observance.start_on.stub(:year) { Date.today.year }
-        subject.year_string.should == "this year"
-      end
-
-      it "is 'last year' for observances in the prior year" do
-        observance.start_on.stub(:year) { Date.today.year - 1 }
-        subject.year_string.should == "last year"
-      end
-
-      it "is 'next year' for observances next year" do
-        observance.start_on.stub(:year) { Date.today.year + 1 }
-        subject.year_string.should == "next year"
-      end
-
-      it "is the year for observances any other year" do
-        observance.start_on.stub(:year) { Date.today.year + 100 }
-        subject.year_string.should == observance.start_on.year.to_s
-      end
-    end
-
-    it "is empty string if no next observance" do
-      event.stub(:next_observance) { nil }
-      subject.year_string.should == ""
-    end
-  end
-
-  context "#year" do
-    it "is the next observance's year" do
-      event.stub(:next_observance) { observance }
-      subject.year.should == observance.start_on.year
-    end
-
-    it "raises an exception if has no next observance" do
-      event.stub(:next_observance) { nil }
-      expect { subject.year }.to raise_error(EventDecorator::NoNextObservance)
-    end
-  end
-
-  context "#month" do
-    it "is the name of the next observance's month" do
-      event.stub(:next_observance) { observance }
-      subject.month.should == observance.start_on.strftime(EventDecorator::MONTH_NAME)
-    end
-
-    it "raises an exception if it has no next observance" do
-      event.stub(:next_observance) { nil }
-      expect { subject.month }.to raise_error(EventDecorator::NoNextObservance)
-    end
-  end
-
-  context "#day_of_week" do
-    it "displays the full name of the day of the week of its next observance" do
-      event.stub(:next_observance) { observance }
-      subject.day_of_week.should == event.next_observance.start_on.strftime(EventDecorator::WEEKDAY_NAME)
-    end
-
-    it "properly handles an event with no next observance" do
-      event.stub(:next_observance) { nil }
-      subject.day_of_week.should == ""
-    end
-  end
-
-  context "#day_of_month" do
-    it "displays the day of the month of its next observance" do
-      event.stub(:next_observance) { observance }
-      subject.day_of_month.should == event.next_observance.start_on.day.to_s
-    end
-
-    it "raises an exception if it has no next observance" do
-      event.stub(:next_observance) { nil }
-      expect { subject.day_of_month }.to raise_error(EventDecorator::NoNextObservance)
-    end
-  end
-
   context "#name" do
     it "display's the event's #longname attribute" do
       subject.name.should == event.longname
+    end
+  end
+
+  context "#with_upcoming_observance" do
+    it "yields the next-most upcoming ovservance, wraped in a decorator, if any" do
+      subject.stub(:upcoming_observances) { [observance] }
+      expect { |b| subject.with_upcoming_observance(&b) }.to yield_with_args(ObservanceDecorator)
+    end
+
+    it "does not yield if no upcoming observance" do
+      subject.stub(:upcoming_observances) { [] }
+      expect { |b| subject.with_upcoming_observance(&b) }.not_to yield_control
     end
   end
 end
