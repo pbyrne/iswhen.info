@@ -2,15 +2,15 @@
   <h2>
     <span class="preamble">The next</span>
     <span class="event"><%= @event.name %></span>
-
     <span class="etre">is</span>
 
-    <span class="day-name"><%= @event.day_of_week %></span><span class="comma">,</span>
-    <span class="day-number"><%= @event.day_of_month %></span>
-    <span class="month"><%= @event.month %></span><span class="comma">,</span>
-    <span class="year"><abbr title="<%= @event.year %>"><%= @event.year_string %></abbr></span>
-
-<%#     <span class="period">.</span> %>
+    <% @event.with_upcoming_observance do |observance| -%>
+      <span class="day-name"><%= observance.day_of_week %></span><span class="comma">,</span>
+      <span class="day-number"><%= observance.day_of_month %></span>
+      <span class="month"><%= observance.month %></span><span class="comma">,</span>
+      <span class="year"><abbr title="<%= observance.raw_year %>"><%= observance.year %></abbr></span>
+      <span class="period">.</span>
+    <% end -%>
 
   </h2>
 </div>
