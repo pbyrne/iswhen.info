@@ -5,6 +5,6 @@ module EventsHelper
   #
   # Returns a String containing the HTML link
   def link_to_event(event)
-    link_to event.longname, root_url(subdomain: event.shortname)
+    link_to event.name, root_url(subdomain: event.shortname)
   end
 end
