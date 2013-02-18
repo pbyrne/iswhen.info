@@ -1,0 +1,26 @@
+/* == reset == */
+h1, h2, h3, h4 {
+	font-size: 1em;
+	margin: 0px;
+	padding: 0px;
+}
+
+p, a, div, span, strong, em {
+	font-size: 1em;
+	margin: 0px;
+	padding: 0px;
+}
+
+ul, ol, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+abbr {
+	border-bottom: none;
+}
+
+a img {
+	border: none;
+}
