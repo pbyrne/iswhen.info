@@ -11,3 +11,176 @@
  *= require_self
  *= require_tree .
  */
+
+/* == reset == */
+h1, h2, h3, h4 {
+	font-size: 1em;
+	margin: 0px;
+	padding: 0px;
+}
+
+p, a, div, span, strong, em {
+	font-size: 1em;
+	margin: 0px;
+	padding: 0px;
+}
+
+ul, ol, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+abbr {
+	border-bottom: none;
+}
+
+a img {
+	border: none;
+}
+
+/* == layout == */
+body {
+	background-color: #333;
+	color: #fff;
+	font-family: Trebuchet, "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+a {
+	color: #333;
+}
+
+#page {
+	background-color: #fff;
+	/* adding until they support the CSS3 border-radius declaration natively */
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	color: #333;
+	margin: 36px auto;
+	padding: 18px 10px;
+	position: relative;
+	width: 600px;
+}
+
+h1 {
+	font-size: 18px;
+	line-height: 108px;
+	text-align: center;
+}
+
+#upcoming {
+	font-size: 18px;
+	line-height: 36px;
+	padding: 0px 60px 0px 180px;
+	position: relative;
+	width: 340px;
+}
+
+#upcoming .comma,
+#upcoming .period {
+	display: none;
+}
+
+#upcoming .preamble {
+	left: 0px;
+	line-height: 54px;
+	padding: 0px 10px 0px 0px;
+	position: absolute;
+	text-align: right;
+	width: 170px;
+}
+
+#upcoming .event {
+	color: #000;
+	font-size: 36px;
+	line-height: 54px;
+}
+
+#upcoming .etre {
+	line-height: 54px;
+	padding: 0px 5px;
+	position: absolute;
+}
+
+#upcoming .evening,
+#upcoming .day-name {
+	display: block;
+}
+
+#upcoming .day-number,
+#upcoming .month {
+	color: #000;
+	font-size: 48px;
+	line-height: 54px;
+}
+
+#upcoming .year {
+	display: block;
+	font-size: 24px;
+	line-height: 36px;
+}
+
+#after {
+	padding: 20px 60px 0px 180px;
+	position: relative;
+	width: 340px;
+}
+
+#others {
+	background-color: #ccc;
+	border-radius: 10px;
+	/* adding until they support the CSS3 border-radius declaration natively */
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	float: left;
+	margin: 36px 0px;
+	padding: 18px 10px;
+}
+
+#others h4 {
+	font-size: 24px;
+	line-height: 54px;
+}
+
+#others li {
+	float: left;
+	width: 140px;
+}
+
+#others a {
+	color: #000;
+	display: block;
+	padding: 9px 10px;
+}
+
+#others a:hover {
+	background-color: #000;
+	color: #fff;
+	text-decoration: none;
+}
+
+#site-info {
+	clear: both;
+	text-align: center;
+}
+
+#site-info p {
+	margin: 0px 0px 1em;
+}
+
+/* todo make this look not like ass on the iphone */
+#app-description {
+	position: absolute;
+	left: 340px;
+	width: 270px;
+}
+
+#app-description p {
+	margin: 0px 0px 1em;
+}
+
+#app-screenshot {
+	
+}
