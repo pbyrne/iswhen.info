@@ -28,6 +28,27 @@ xml.root do
             end
           end
         end
+
+        if event.observance_after
+          event.observance_after.start_on.tap do |start_on|
+            if start_on
+              # tacking on timestamp for compatibility with old app
+              xml.after("#{start_on.to_s(:db)} 06:00:00")
+              xml.afterday(start_on.to_s(:dayname))
+              xml.afterdate(start_on.to_s(:dayandmonth))
+              xml.afteryear(start_on.year)
+            end
+          end
+
+          event.observance_after.end_on.tap do |end_on|
+            if end_on
+              xml.afterend("#{end_on.to_s(:db)} 06:00:00")
+              xml.afterendday(end_on.to_s(:dayname))
+              xml.afterenddate(end_on.to_s(:dayandmonth))
+              xml.afterendyear(end_on.year)
+            end
+          end
+        end
       end
     end
   end
