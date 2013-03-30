@@ -44,6 +44,13 @@ class Event < ActiveRecord::Base
     @next_observance ||= upcoming_observances.first
   end
 
+  # Public: The observance after the next
+  #
+  # Returns an Observance
+  def observance_after
+    @observance_after ||= upcoming_observances.second
+  end
+
   # Public: The string representation of the event
   #
   # Returns a String
