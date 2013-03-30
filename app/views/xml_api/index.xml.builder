@@ -7,6 +7,7 @@ xml.root do
         xml.longname(event.longname)
         xml.startssundown(event.starts_sundown)
 
+        # FIXME this needs to be cleaned up, using decorators
         if event.next_observance
           event.next_observance.start_on.tap do |start_on|
             if start_on
