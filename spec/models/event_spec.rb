@@ -129,6 +129,22 @@ describe Event do
     end
   end
 
+  context "#observance_after" do
+    let(:event) { FactoryGirl.build(:event) }
+    let(:upcoming) { stub(:next_observance) }
+    let(:future) { stub(:future_observance) }
+
+    it "returns the observance after the next one" do
+      event.stub(upcoming_observances: [upcoming, future])
+      event.observance_after.should == future
+    end
+
+    it "returns nil if there is none" do
+      event.stub(upcoming_observances: [upcoming])
+      event.observance_after.should be_nil
+    end
+  end
+
   context "#next_date" do
     let(:event) { FactoryGirl.build(:event) }
     let(:observance) { FactoryGirl.build(:tomorrow) }
