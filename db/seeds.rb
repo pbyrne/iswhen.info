@@ -10,6 +10,7 @@ require 'event_loader'
 # far-future election day: http://www.when-is.com/election-day-2020.asp
 # far-future grandparents day: http://www.calendar-365.com/holidays/grandparents'-day.html
 # far-future daylight saving time: http://www.itronmeters.com/DST_Dates.htm
+# passover: http://www.chabad.org/holidays/passover/pesach_cdo/aid/671901/jewish/When-is-Passover-in-2013-2014-2015-2016-and-2017.htm
 
 Event.destroy_all
 Observance.destroy_all
@@ -374,3 +375,10 @@ EventLoader.new("Grandparents Day", "grandparentsday", "Grandparents Day").tap d
   loader.add "2020-09-13"
 end
 
+EventLoader.new("Passover", "passover", "Passover", true).tap do |loader|
+  loader.add "2013-03-25", "2013-04-02"
+  loader.add "2014-04-14", "2014-04-22"
+  loader.add "2015-04-03", "2015-04-11"
+  loader.add "2016-04-22", "2016-04-30"
+  loader.add "2017-04-10", "2017-04-18"
+end
