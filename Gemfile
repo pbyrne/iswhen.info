@@ -4,6 +4,7 @@ ruby "1.9.3"
 gem 'rails', '3.2.13'
 gem 'draper'
 gem 'newrelic_rpm'
+gem 'unicorn'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'powder'
+  gem 'foreman'
 end
 
 # To use Jbuilder templates for JSON
