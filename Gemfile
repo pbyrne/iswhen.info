@@ -27,6 +27,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'powder'
   gem 'foreman'
+  gem 'oink' # show me where i'm loading too much crap
 end
 
 # To use Jbuilder templates for JSON

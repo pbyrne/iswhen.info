@@ -45,6 +45,7 @@ GEM
     foreman (0.62.0)
       thor (>= 0.13.6)
     hike (1.2.1)
+    hodel_3000_compliant_logger (0.1.1)
     i18n (0.6.1)
     journey (1.0.4)
     json (1.7.7)
@@ -56,6 +57,9 @@ GEM
     mime-types (1.21)
     multi_json (1.7.2)
     newrelic_rpm (3.6.0.78)
+    oink (0.10.1)
+      activerecord
+      hodel_3000_compliant_logger
     pg (0.15.0)
     polyglot (0.3.3)
     powder (0.2.0)
@@ -133,6 +137,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   newrelic_rpm
+  oink
   pg
   powder
   rails (= 3.2.13)
