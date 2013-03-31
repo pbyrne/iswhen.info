@@ -17,7 +17,7 @@ class EventCollector
   #
   # Returns an Array of Event instances
   def events
-    @events ||= Event.joins(:observances).where("observances.start_on >= ?", Date.current).uniq
+    @events ||= Event.includes(:upcoming_observances).where("observances.start_on >= ?", Date.current).uniq
   end
 
   # Public: The list of upcoming events, sorted by next date

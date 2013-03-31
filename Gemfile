@@ -25,6 +25,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'powder'
+  gem 'oink' # show me where i'm loading too much crap
 end
 
 # To use Jbuilder templates for JSON
