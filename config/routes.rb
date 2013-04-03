@@ -4,7 +4,7 @@ IsWhen::Application.routes.draw do
   # and the legacy XML API
   match '/xml-api', to: "xml_api#index", format: "xml"
   # and the legacy iphone page
-  match '/iphone' => redirect("http://itunes.apple.com/us/app/iswhen/id313199425?mt=8")
+  match '/iphone' => redirect(Rails.application.config.itunes_url)
   # otherwise, show the whole list
   root to: "events#index"
 end
