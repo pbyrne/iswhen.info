@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "events/index.html.erb" do
+describe "events/index.html.haml" do
   before do
     assign(:collection, [])
   end
@@ -8,7 +8,7 @@ describe "events/index.html.erb" do
   it "includes some welcome copy" do
     render
 
-    rendered.should include "<h1>Welcome"
+    rendered.should include "Welcome"
     rendered.should include "Choose from these upcoming holidays and events"
   end
 

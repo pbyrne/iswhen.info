@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'draper'
 gem 'newrelic_rpm'
 gem 'unicorn'
+gem 'haml-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,7 +28,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'powder'
   gem 'foreman'
-  gem 'oink' # show me where i'm loading too much crap
+  gem 'better_errors'
 end
 
 # To use Jbuilder templates for JSON
