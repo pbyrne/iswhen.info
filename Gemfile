@@ -28,6 +28,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'powder'
   gem 'foreman'
+  gem 'better_errors'
 end
 
 # To use Jbuilder templates for JSON
