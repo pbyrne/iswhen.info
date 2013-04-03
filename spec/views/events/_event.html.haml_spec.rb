@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "events/_event.html.erb" do
+describe "events/_event.html.haml" do
   let(:event) { FactoryGirl.build(:event).decorate }
   let(:observance) { FactoryGirl.build(:tomorrow) }
   let(:decorated_observance) { observance.decorate }
