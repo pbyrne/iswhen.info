@@ -1,0 +1,16 @@
+%div#upcoming
+  %h2
+    %span.preamble The next
+    %span.event= @event.name
+    %span.etre is
+
+    - @event.with_upcoming_observance do |observance|
+      %span.day-name= observance.day_of_week
+      %span.comma ,
+      %span.day-number= observance.day_of_month
+      %span.month= observance.month
+      %span.comma ,
+      %span.year
+        %abbr{title: observance.raw_year}= observance.year
+      %span.period .
+

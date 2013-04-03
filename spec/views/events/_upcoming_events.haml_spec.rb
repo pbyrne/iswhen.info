@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "events/_upcoming_events.html.erb" do
+describe "events/_upcoming_events.html.haml" do
   let(:event) { FactoryGirl.build(:event) }
   let(:collection) { EventCollector.new.tap { |ec| ec.events = [event] } }
 
