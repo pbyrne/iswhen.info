@@ -40,7 +40,6 @@ class Event < ActiveRecord::Base
   #
   # Returns an Observance
   def next_observance
-    # TODO figure out why this does a whole bunch of queries event with an Event.include(:observances)
     @next_observance ||= upcoming_observances.first
   end
 
