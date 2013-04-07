@@ -21,6 +21,13 @@ class Event < ActiveRecord::Base
     find_by_shortname(subdomain) || raise(EventNotFound, "No event found for '#{subdomain}'.")
   end
 
+  # Public: Find upcoming events
+  #
+  # Returns an ActiveRecord::Relation
+  def self.upcoming
+    includes(:upcoming_observances).where("observances.start_on >= ?", Date.current)
+  end
+
   # Public: Sort by next_date
   #
   # Assumes that Event#next_date will never be nil. The intention is to

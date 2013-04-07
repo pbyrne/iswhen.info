@@ -182,4 +182,26 @@ describe Event do
       expect { Event.for_subdomain(subdomain) }.to raise_error(Event::EventNotFound)
     end
   end
+
+  context ".upcoming" do
+    let(:event) { FactoryGirl.create(:event) }
+    let(:yesterday) { FactoryGirl.create(:yesterday) }
+    let(:today) { FactoryGirl.create(:today) }
+    let(:tomorrow) { FactoryGirl.create(:tomorrow) }
+
+    it "includes events with observances today" do
+      event.observances << today
+      expect(Event.upcoming).to include(event)
+    end
+
+    it "includes events with observances in the future" do
+      event.observances << tomorrow
+      expect(Event.upcoming).to include(event)
+    end
+
+    it "does not include events with observances only in the past" do
+      event.observances << yesterday
+      expect(Event.upcoming).to_not include(event)
+    end
+  end
 end
