@@ -382,3 +382,19 @@ EventLoader.new("Passover", "passover", "Passover", true).tap do |loader|
   loader.add "2016-04-22", "2016-04-30"
   loader.add "2017-04-10", "2017-04-18"
 end
+
+EventLoader.new("Rosh Hashanah", "roshhashanah", "Rosh Hashanah", true).tap do |loader|
+  loader.add '2013-09-04'
+  loader.add '2014-09-24'
+  loader.add '2015-09-13'
+  loader.add '2016-10-02'
+  loader.add '2017-09-20'
+end
+
+EventLoader.new("Yom Kippur", "yomkippur", "Yom Kippur", true).tap do |loader|
+  loader.add '2013-09-13'
+  loader.add '2014-10-03'
+  loader.add '2015-09-22'
+  loader.add '2016-10-11'
+  loader.add '2017-09-29'
+end
