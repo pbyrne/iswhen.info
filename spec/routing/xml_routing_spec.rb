@@ -6,6 +6,7 @@ describe "routing for legacy XML API" do
       controller: "xml_api",
       action: "index",
       format: "xml",
+      show: "complete",
     })
   end
 end

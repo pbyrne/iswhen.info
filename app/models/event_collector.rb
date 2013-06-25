@@ -18,7 +18,7 @@ class EventCollector
   # Returns an Array of Event instances
   def events
     # FIXME this logic belongs in the Event model. stop leaking AR outside of the model
-    @events ||= Event.includes(:upcoming_observances).where("observances.start_on >= ?", Date.current)
+    @events ||= Event.includes(:upcoming_observances).where("observances.start_on >= ?", Date.current).references(:observances)
   end
 
   # Public: The list of upcoming events, sorted by next date
