@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  attr_accessible :name, :shortname, :longname, :starts_sundown
+  # no CRUD in the app, so don't bother transitioning to strong_params just yet
+  # attr_accessible :name, :shortname, :longname, :starts_sundown
 
   has_many :observances, :inverse_of => :event, :order => "start_on asc"
   has_many :upcoming_observances, :class_name => "Observance", :inverse_of => :event, :order => "start_on asc", :conditions => Observance.upcoming.where_values
