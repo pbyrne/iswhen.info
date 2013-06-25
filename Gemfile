@@ -10,9 +10,6 @@ gem 'haml-rails'
 # https://devcenter.heroku.com/articles/rails4
 gem 'rails_12factor'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 group :production do
   gem "pg"
 end
