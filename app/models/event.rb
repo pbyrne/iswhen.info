@@ -1,15 +1,16 @@
 class Event < ActiveRecord::Base
-  attr_accessible :name, :shortname, :longname, :starts_sundown
+  # no CRUD in the app, so don't bother transitioning to strong_params just yet
+  # attr_accessible :name, :shortname, :longname, :starts_sundown
 
-  has_many :observances, :inverse_of => :event, :order => "start_on asc"
-  has_many :upcoming_observances, :class_name => "Observance", :inverse_of => :event, :order => "start_on asc", :conditions => Observance.upcoming.where_values
+  has_many :observances, -> { order "start_on asc" }, inverse_of: :event
+  has_many :upcoming_observances, -> { Observance.upcoming.order("start_on asc") }, class_name: "Observance", inverse_of: :event
 
   validates :longname,
     :presence => true
   validates :name,
     :presence => true
   validates :shortname,
-    :format => /^\w+$/,
+    :format => /\A\w+\Z/,
     :uniqueness => true
 
   # Public: Find the event for the given subdomain

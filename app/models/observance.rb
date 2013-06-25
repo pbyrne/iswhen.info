@@ -1,9 +1,10 @@
 class Observance < ActiveRecord::Base
-  attr_accessible :event_id, :start_on, :end_on
+  # no CRUD in the app, so don't bother transitioning to strong_params just yet
+  # attr_accessible :event_id, :start_on, :end_on
 
   belongs_to :event, :inverse_of => :observances
 
-  scope :upcoming, where("start_on >= ?", Date.current)
+  scope :upcoming, -> { where("start_on >= ?", Date.current) }
 
   validates :start_on,
     :presence => true
