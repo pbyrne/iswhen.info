@@ -146,6 +146,7 @@ DEPENDENCIES
   powder
   rails (= 4.0.0)
   rspec-rails
+  sass
   sass-rails (~> 4.0.0)
   simplecov
   sqlite3

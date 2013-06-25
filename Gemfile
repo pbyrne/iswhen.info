@@ -17,6 +17,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass' # explicit require of sass to prevent thread-safety warning
   gem 'sass-rails', '~> 4.0.0'
 end
 
