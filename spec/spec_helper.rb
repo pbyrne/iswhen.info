@@ -18,7 +18,7 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
-  config.filter_run :focus => true
+  config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

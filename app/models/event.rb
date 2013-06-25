@@ -6,12 +6,12 @@ class Event < ActiveRecord::Base
   has_many :upcoming_observances, -> { Observance.upcoming.order("start_on asc") }, class_name: "Observance", inverse_of: :event
 
   validates :longname,
-    :presence => true
+    presence: true
   validates :name,
-    :presence => true
+    presence: true
   validates :shortname,
-    :format => /\A\w+\Z/,
-    :uniqueness => true
+    format: /\A\w+\Z/,
+    uniqueness: true
 
   # Public: Find the event for the given subdomain
   #
