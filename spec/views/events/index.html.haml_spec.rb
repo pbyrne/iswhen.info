@@ -8,13 +8,13 @@ describe "events/index.html.haml" do
   it "includes some welcome copy" do
     render
 
-    rendered.should include "Welcome"
-    rendered.should include "Choose from these upcoming holidays and events"
+    expect(rendered).to include "Welcome"
+    expect(rendered).to include "Choose from these upcoming holidays and events"
   end
 
   it "renders the list of upcoming events" do
     render
 
-    view.should render_template(partial: "_upcoming_events")
+    expect(view).to render_template(partial: "_upcoming_events")
   end
 end

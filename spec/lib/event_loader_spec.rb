@@ -6,50 +6,50 @@ describe EventLoader do
   let(:shortname) { "shortname" }
   let(:longname) { "longname" }
   let(:starts_sundown) { false }
-  let(:event) { stub(:event, id: 123) }
+  let(:event) { double(:event, id: 123) }
 
   subject { EventLoader.new(name, shortname, longname, starts_sundown) }
 
   context ".new(name, shortname, longname, starts_sundown)" do
     it "remembers the event's information" do
       loader = EventLoader.new name, shortname, longname, starts_sundown
-      loader.name.should == name
-      loader.shortname.should == shortname
-      loader.longname.should == longname
-      loader.starts_sundown.should == starts_sundown
+      expect(loader.name).to eq name
+      expect(loader.shortname).to eq shortname
+      expect(loader.longname).to eq longname
+      expect(loader.starts_sundown).to eq starts_sundown
     end
 
     it "accepts none of these attributes being given" do
       loader = EventLoader.new
-      loader.name.should be_nil
-      loader.shortname.should be_nil
-      loader.longname.should be_nil
-      loader.starts_sundown.should be_false
+      expect(loader.name).to be_nil
+      expect(loader.shortname).to be_nil
+      expect(loader.longname).to be_nil
+      expect(loader.starts_sundown).to be_false
     end
 
     it "defaults starts_sundown as being false" do
       loader = EventLoader.new name, shortname, longname
-      loader.starts_sundown.should be_false
+      expect(loader.starts_sundown).to be_false
     end
   end
 
   context "#event" do
     it "creates the event if none exists" do
       Event.should_receive(:create!).with(name: name, shortname: shortname, longname: longname, starts_sundown: starts_sundown) { event }
-      subject.event.should == event
+      expect(subject.event).to eq event
     end
 
     it "loads the existing event if one matches its values" do
       # already drop it into the database
       existing = Event.create!(name: name, shortname: shortname, longname: longname, starts_sundown: starts_sundown)
-      subject.event.should == existing
+      expect(subject.event).to eq existing
     end
 
     it "remembers the given event" do
       subject.event = event
       Event.should_not_receive(:where)
       Event.should_not_receive(:create!)
-      subject.event.should == event
+      expect(subject.event).to eq event
     end
   end
 

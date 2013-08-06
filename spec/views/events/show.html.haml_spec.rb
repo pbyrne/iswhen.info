@@ -13,11 +13,11 @@ describe "events/show.html.haml" do
   it "renders the selected event" do
     render
 
-    view.should render_template(partial: "_event")
+    expect(view).to render_template(partial: "_event")
   end
 
   it "renders the list of upcoming events" do
     render
-    view.should render_template(partial: "_upcoming_events")
+    expect(view).to render_template(partial: "_upcoming_events")
   end
 end
