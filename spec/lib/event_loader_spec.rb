@@ -6,7 +6,7 @@ describe EventLoader do
   let(:shortname) { "shortname" }
   let(:longname) { "longname" }
   let(:starts_sundown) { false }
-  let(:event) { stub(:event, id: 123) }
+  let(:event) { double(:event, id: 123) }
 
   subject { EventLoader.new(name, shortname, longname, starts_sundown) }
 

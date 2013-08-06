@@ -3,7 +3,7 @@ require 'spec_helper'
 describe EventsController do
 
   describe "GET 'index'" do
-    let(:collector) { stub(:event_collector) }
+    let(:collector) { double(:event_collector) }
 
     it "returns http success" do
       get 'index'
@@ -20,7 +20,7 @@ describe EventsController do
   describe "GET 'show'" do
     let(:event) { FactoryGirl.build(:event) }
     let(:subdomain) { "foo" }
-    let(:collector) { stub(:event_collector) }
+    let(:collector) { double(:event_collector) }
 
     before do
       request.host = "#{subdomain}.example.host"

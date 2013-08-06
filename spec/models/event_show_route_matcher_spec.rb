@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe EventShowRouteMatcher do
-  let(:request) { stub(:request, subdomain: "foo") }
+  let(:request) { double(:request, subdomain: "foo") }
 
   context "#matches?(request)" do
     it "matches if given a subdomain matching an existing event" do

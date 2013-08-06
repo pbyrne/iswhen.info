@@ -117,8 +117,8 @@ describe Event do
 
   context "#next_observance" do
     let(:event) { FactoryGirl.build(:event) }
-    let(:upcoming) { stub(:next_observance) }
-    let(:future) { stub(:future_observance) }
+    let(:upcoming) { double(:next_observance) }
+    let(:future) { double(:future_observance) }
 
     before do
       event.stub(upcoming_observances: [upcoming, future])
@@ -131,8 +131,8 @@ describe Event do
 
   context "#observance_after" do
     let(:event) { FactoryGirl.build(:event) }
-    let(:upcoming) { stub(:next_observance) }
-    let(:future) { stub(:future_observance) }
+    let(:upcoming) { double(:next_observance) }
+    let(:future) { double(:future_observance) }
 
     it "returns the observance after the next one" do
       event.stub(upcoming_observances: [upcoming, future])

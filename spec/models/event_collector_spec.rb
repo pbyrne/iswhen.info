@@ -40,7 +40,7 @@ describe EventCollector do
   end
 
   context "#sorted_events" do
-    let(:result) { stub(:array) }
+    let(:result) { double(:array) }
 
     it "sorts the events" do
       subject.events.should_receive(:sort) { result }
