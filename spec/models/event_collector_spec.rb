@@ -10,41 +10,41 @@ describe EventCollector do
     it "returns events with upcoming observances" do
       event.observances << tomorrow
 
-      subject.events.should include event
+      expect(subject.events).to include event
     end
 
     it "returns events with an observance today" do
       event.observances << today
 
-      subject.events.should include event
+      expect(subject.events).to include event
     end
 
     it "does not return events without observances" do
       event.observances = []
 
-      subject.events.should_not include event
+      expect(subject.events).to_not include event
     end
 
     it "does not return events with observances only in the past" do
       event.observances << yesterday
 
-      subject.events.should_not include event
+      expect(subject.events).to_not include event
     end
 
     it "returns each event only once" do
       event.observances << today
       event.observances << tomorrow
 
-      subject.events.should == [event]
+      expect(subject.events).to eq [event]
     end
   end
 
   context "#sorted_events" do
-    let(:result) { stub(:array) }
+    let(:result) { double(:array) }
 
     it "sorts the events" do
       subject.events.should_receive(:sort) { result }
-      subject.sorted_events.should == result
+      expect(subject.sorted_events).to eq result
     end
   end
 
@@ -71,8 +71,8 @@ describe EventCollector do
     subject { EventCollector.except event }
 
     it "loads events except the given event" do
-      subject.events.should include another
-      subject.events.should_not include event
+      expect(subject.events).to include another
+      expect(subject.events).to_not include event
     end
   end
 end

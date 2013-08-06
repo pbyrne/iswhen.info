@@ -11,6 +11,6 @@ describe "events/_upcoming_events.html.haml" do
   it "displays links to the events" do
     render
 
-    rendered.should include link_to_event(event)
+    expect(rendered).to include link_to_event(event)
   end
 end

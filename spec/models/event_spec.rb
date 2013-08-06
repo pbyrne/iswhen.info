@@ -12,30 +12,30 @@ describe Event do
         event.save
 
         duplicate.valid?
-        duplicate.errors.should include :shortname
+        expect(duplicate.errors).to include :shortname
 
         unique.valid?
-        unique.errors.should_not include :shortname
+        expect(unique.errors).to_not include :shortname
       end
 
       it "must be a single word" do
         event.shortname = "foo"
         event.valid?
-        event.errors.should_not include :shortname
+        expect(event.errors).to_not include :shortname
 
         event.shortname = "this is not right"
         event.valid?
-        event.errors.should include :shortname
+        expect(event.errors).to include :shortname
       end
 
       it "cannot be blank" do
         event.shortname = "foo"
         event.valid?
-        event.errors.should_not include :shortname
+        expect(event.errors).to_not include :shortname
 
         event.shortname = nil
         event.valid?
-        event.errors.should include :shortname
+        expect(event.errors).to include :shortname
       end
     end
 
@@ -43,11 +43,11 @@ describe Event do
       it "cannot be blank" do
         event.longname = "foo"
         event.valid?
-        event.errors.should_not include :longname
+        expect(event.errors).to_not include :longname
 
         event.longname = nil
         event.valid?
-        event.errors.should include :longname
+        expect(event.errors).to include :longname
       end
     end
 
@@ -55,11 +55,11 @@ describe Event do
       it "cannot be blank" do
         event.name = "Something"
         event.valid?
-        event.errors.should_not include :name
+        expect(event.errors).to_not include :name
 
         event.name = nil
         event.valid?
-        event.errors.should include :name
+        expect(event.errors).to include :name
       end
     end
   end
@@ -74,7 +74,7 @@ describe Event do
       middle.stub(next_date: Date.current)
       last.stub(next_date: Date.tomorrow)
 
-      [first, last, middle].sort.should == [first, middle, last]
+      expect([first, last, middle].sort).to eq [first, middle, last]
     end
   end
 
@@ -87,7 +87,7 @@ describe Event do
       event.observances << last
       event.observances << first
 
-      event.observances.should == [first, last]
+      expect(event.observances).to eq [first, last]
     end
   end
 
@@ -104,44 +104,44 @@ describe Event do
     end
 
     it "sorts by start_on" do
-      event.upcoming_observances.first.should == upcoming
-      event.upcoming_observances.last.should == future
+      expect(event.upcoming_observances.first).to eq upcoming
+      expect(event.upcoming_observances.last).to eq future
     end
 
     it "does not include observances in the past" do
-      event.upcoming_observances.should include upcoming
-      event.upcoming_observances.should include future
-      event.upcoming_observances.should_not include past
+      expect(event.upcoming_observances).to include upcoming
+      expect(event.upcoming_observances).to include future
+      expect(event.upcoming_observances).to_not include past
     end
   end
 
   context "#next_observance" do
     let(:event) { FactoryGirl.build(:event) }
-    let(:upcoming) { stub(:next_observance) }
-    let(:future) { stub(:future_observance) }
+    let(:upcoming) { double(:next_observance) }
+    let(:future) { double(:future_observance) }
 
     before do
       event.stub(upcoming_observances: [upcoming, future])
     end
 
     it "returns the next upcoming observance" do
-      event.next_observance.should == upcoming
+      expect(event.next_observance).to eq upcoming
     end
   end
 
   context "#observance_after" do
     let(:event) { FactoryGirl.build(:event) }
-    let(:upcoming) { stub(:next_observance) }
-    let(:future) { stub(:future_observance) }
+    let(:upcoming) { double(:next_observance) }
+    let(:future) { double(:future_observance) }
 
     it "returns the observance after the next one" do
       event.stub(upcoming_observances: [upcoming, future])
-      event.observance_after.should == future
+      expect(event.observance_after).to eq future
     end
 
     it "returns nil if there is none" do
       event.stub(upcoming_observances: [upcoming])
-      event.observance_after.should be_nil
+      expect(event.observance_after).to be_nil
     end
   end
 
@@ -151,12 +151,12 @@ describe Event do
 
     it "is the start_on of the next upcoming observance" do
       event.stub(next_observance: observance)
-      event.next_date.should == observance.start_on
+      expect(event.next_date).to eq observance.start_on
     end
 
     it "is a far-future date if has no future observances" do
       event.stub(next_observance: nil)
-      event.next_date.should == 100.years.from_now.to_date
+      expect(event.next_date).to eq 100.years.from_now.to_date
     end
   end
 
@@ -164,7 +164,7 @@ describe Event do
     let(:event) { FactoryGirl.build(:event) }
 
     it "uses the long name" do
-      event.to_s.should == event.longname
+      expect(event.to_s).to eq event.longname
     end
   end
 
@@ -174,7 +174,7 @@ describe Event do
 
     it "returns the event with the given short name" do
       Event.should_receive(:find_by_shortname).with(subdomain) { event }
-      Event.for_subdomain(subdomain).should == event
+      expect(Event.for_subdomain(subdomain)).to eq event
     end
 
     it "raises an exception if none match" do

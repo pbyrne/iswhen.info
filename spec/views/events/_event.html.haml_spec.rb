@@ -11,7 +11,7 @@ describe "events/_event.html.haml" do
 
   it "displays the long name of the event" do
     render
-    rendered.should include event.name
+    expect(rendered).to include event.name
   end
 
   context "with an upcoming observance" do
@@ -21,23 +21,23 @@ describe "events/_event.html.haml" do
 
     it "displays the day of week it occurs" do
       render
-      rendered.should include decorated_observance.day_of_week
+      expect(rendered).to include decorated_observance.day_of_week
     end
 
     it "displays the day of the month it occurs" do
       render
-      rendered.should include decorated_observance.day_of_month
+      expect(rendered).to include decorated_observance.day_of_month
     end
 
     it "displays the month it occurs" do
       render
-      rendered.should include decorated_observance.month
+      expect(rendered).to include decorated_observance.month
     end
 
     it "displays the year it occurs" do
       render
-      rendered.should include decorated_observance.raw_year.to_s
-      rendered.should include decorated_observance.year
+      expect(rendered).to include decorated_observance.raw_year.to_s
+      expect(rendered).to include decorated_observance.year
     end
   end
 

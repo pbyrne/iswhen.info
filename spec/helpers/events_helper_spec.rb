@@ -15,7 +15,7 @@ describe EventsHelper do
     let(:event) { FactoryGirl.build(:event) }
 
     it "builds a link to the correct subdomain" do
-      link_to_event(event).should == link_to(event.name, root_url(subdomain: event.shortname))
+      expect(link_to_event(event)).to eq link_to(event.name, root_url(subdomain: event.shortname))
     end
   end
 end
