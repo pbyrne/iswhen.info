@@ -6,13 +6,13 @@ describe XmlApiController do
 
     it "returns http success" do
       get 'index', format: "xml"
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "assigns the EventCollector" do
       EventCollector.should_receive(:new) { collector }
       get 'index', format: "xml"
-      assigns(:collection).should == collector
+      expect(assigns(:collection)).to eq collector
     end
   end
 end

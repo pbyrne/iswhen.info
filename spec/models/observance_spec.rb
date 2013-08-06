@@ -7,25 +7,25 @@ describe Observance do
     it "must have a start_on" do
       observance.start_on = Date.current
       observance.valid?
-      observance.errors.should_not include :start_on
+      expect(observance.errors).to_not include :start_on
 
       observance.start_on = nil
       observance.valid?
-      observance.errors.should include :start_on
+      expect(observance.errors).to include :start_on
     end
 
     it "must end after it starts" do
       observance.end_on = nil
       observance.valid?
-      observance.errors.should_not include :end_on
+      expect(observance.errors).to_not include :end_on
 
       observance.end_on = observance.start_on
       observance.valid?
-      observance.errors.should include :end_on
+      expect(observance.errors).to include :end_on
 
       observance.end_on = observance.start_on + 1
       observance.valid?
-      observance.errors.should_not include :end_on
+      expect(observance.errors).to_not include :end_on
     end
   end
 
@@ -35,9 +35,9 @@ describe Observance do
     let!(:tomorrow) { FactoryGirl.create(:tomorrow) }
 
     it "excludes observances from the past" do
-      Observance.upcoming.should_not include past
-      Observance.upcoming.should include today
-      Observance.upcoming.should include tomorrow
+      expect(Observance.upcoming).to_not include past
+      expect(Observance.upcoming).to include today
+      expect(Observance.upcoming).to include tomorrow
     end
   end
 
@@ -46,22 +46,22 @@ describe Observance do
 
     it "is false if has no end_on" do
       observance.end_on = nil
-      observance.ends_before_it_begins?.should be_false
+      expect(observance.ends_before_it_begins?).to be_false
     end
 
     it "is false if its end_on is after start_on" do
       observance.end_on = observance.start_on + 1
-      observance.ends_before_it_begins?.should be_false
+      expect(observance.ends_before_it_begins?).to be_false
     end
 
     it "is true if its end_on is identical to start_on" do
       observance.end_on = observance.start_on
-      observance.ends_before_it_begins?.should be_true
+      expect(observance.ends_before_it_begins?).to be_true
     end
 
     it "is true if its end_on is before start_on" do
       observance.end_on = observance.start_on - 1
-      observance.ends_before_it_begins?.should be_true
+      expect(observance.ends_before_it_begins?).to be_true
     end
   end
 end
