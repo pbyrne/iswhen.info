@@ -9,6 +9,7 @@ gem 'haml-rails'
 # recommended by heroku for changing some rails defaults to ways that they like
 # https://devcenter.heroku.com/articles/rails4
 gem 'rails_12factor'
+gem 'okcomputer'
 
 group :production do
   gem "pg"
